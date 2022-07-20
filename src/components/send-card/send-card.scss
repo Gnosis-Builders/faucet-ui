@@ -1,0 +1,33 @@
+.send-card {
+    &__green-area {
+        background-color: #6ccd6b;
+        border-color: #6ccd6b;
+        border-radius: 10px;
+    }
+
+    &__toggle-container {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    &__element {
+        background-color: white !important;
+        border-radius: 5px !important;
+    }
+
+    &__text-button {
+        border: none !important;
+        text-transform: none !important;
+        color: #171717 !important;
+    }
+
+    &__white-button {
+        background-color: white !important;
+        text-transform: none !important;
+        color: #171717 !important;
+        font-weight: bold !important;
+    }
+
+    &__white-button:hover {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+}

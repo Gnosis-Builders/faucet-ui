@@ -1,15 +1,21 @@
 .navbar {
     &__root {
         margin: 0.625rem;
-        flex-grow: 1;        
+        flex-grow: 1;
         header {
             box-shadow: none;
         }
+    }
+
+    &__logo {        
+        max-width: 324px;
+        max-height: 72px;
     }    
 
-    &__logo {
-        max-width: 15rem;
-    }
+    &__logo-small {        
+        max-width: 324px;
+        max-height: 63px;
+    }        
 
     &__title {
         flex-grow: 1;

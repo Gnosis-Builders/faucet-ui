@@ -1,0 +1,26 @@
+.nx {
+    &__colorful {
+        background: #e76052;
+        background-image: -webkit-linear-gradient(right, #e76052, #f0b447, #6ed16d, #528cf3);
+        background: linear-gradient(right, #e76052, #f0b447, #6ed16d, #528cf3);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;        
+        font-weight: bold !important;
+
+        // background-image: -moz-linear-gradient(right, #e76052, #f0b447, #6ed16d, #528cf3);
+        // background-image: -ms-linear-gradient(right, #e76052, #f0b447, #6ed16d, #528cf3);
+        // background-image: -o-linear-gradient(right, #e76052, #f0b447, #6ed16d, #528cf3);
+    }
+
+    &__paragraph {
+        font-size: 1rem;
+        line-height: 1.5rem;
+
+        &__center {
+            text-align: center;
+            padding-left: 1%;
+            padding-right: 1%;        
+        }
+    }
+}
