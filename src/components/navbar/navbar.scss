@@ -1,0 +1,18 @@
+.navbar {
+    &__root {
+        margin: 0.625rem;
+        flex-grow: 1;        
+        header {
+            box-shadow: none;
+        }
+    }    
+
+    &__logo {
+        max-width: 15rem;
+    }
+
+    &__title {
+        flex-grow: 1;
+        text-align: center;
+    }
+}
