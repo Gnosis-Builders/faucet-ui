@@ -11,14 +11,16 @@ import {
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Container } from "@mui/system";
-import classNames from "classnames";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "./send-card.scss";
 
 export const SendCard = () => {
     const [network, setNetwork] = useState<"Gnosis Chain" | "Chiado Testnet">(
         "Gnosis Chain"
     );
+
+    const [walletAddress, setWalletAddress] = useState<string>("");
+
     const handleNetworkChange = (
         _event: React.MouseEvent<HTMLElement>,
         newNetwork: "Gnosis Chain" | "Chiado Testnet"
@@ -26,8 +28,20 @@ export const SendCard = () => {
         setNetwork(newNetwork);
     };
 
+    const handleWalletAddressChange = (
+        event: ChangeEvent<HTMLInputElement>
+    ) => {
+        setWalletAddress(event.target.value);
+    };
+
     const onVerifyCaptcha = (token: string) => {
         console.log("Verified: " + token);
+    };
+
+    const paste = () => {
+        navigator.clipboard.readText().then((clipboard) => {
+            setWalletAddress(clipboard);
+        });
     };
 
     const isTabletOrMobile = useMediaQuery("(max-width:960px)");
@@ -83,12 +97,15 @@ export const SendCard = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                onChange={handleWalletAddressChange}
+                                value={walletAddress}
                                 className="send-card__element"
                                 id="wallet-address"
                                 fullWidth
                                 InputProps={{
                                     endAdornment: (
                                         <Button
+                                            onClick={paste}
                                             className="send-card__text-button"
                                             variant="outlined"
                                             sx={{ fontWeight: "bold" }}
