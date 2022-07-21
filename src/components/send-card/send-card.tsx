@@ -2,6 +2,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import {
     Button,
     Grid,
+    MenuItem,
     TextField,
     ToggleButton,
     ToggleButtonGroup,
@@ -18,19 +19,17 @@ import Loading from "../loading";
 import "./send-card.scss";
 
 export const SendCard = () => {
-    const [network, setNetwork] = useState<"Gnosis Chain" | "Chiado Testnet">(
-        "Gnosis Chain"
-    );
+    const [network, setNetwork] = useState<string>("Gnosis Chain");
     const [captchaVerified, setCaptchaVerified] = useState(false);
     const [hash, setHash] = useState<string>();
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
+    const [faucetBalance, setFaucetBalance] = useState<string>("12.010");
 
-    const handleNetworkChange = (
-        _event: React.MouseEvent<HTMLElement>,
-        newNetwork: "Gnosis Chain" | "Chiado Testnet"
-    ) => {
-        setNetwork(newNetwork);
+    const networks = ["Gnosis Chain"];
+
+    const handleNetworkChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setNetwork(event.target.value);
     };
 
     const handleWalletAddressChange = (
@@ -97,47 +96,38 @@ export const SendCard = () => {
                 <CardContent className="send-card__green-area">
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <Typography variant="body1" fontWeight={"bold"}>
+                            <Typography
+                                variant="body1"
+                                fontFamily="GT-Planar"
+                                fontSize="20px"
+                            >
                                 Network
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <ToggleButtonGroup
-                                className="send-card__toggle-container"
-                                color="standard"
+                            <TextField
+                                className="send-card__element"
+                                id="network"
+                                name="network"
+                                select
+                                fullWidth
                                 value={network}
-                                exclusive
-                                size="small"
                                 onChange={handleNetworkChange}
-                                aria-label="select network"
                             >
-                                <ToggleButton
-                                    className={
-                                        network === "Gnosis Chain"
-                                            ? "send-card__element"
-                                            : ""
-                                    }
-                                    value="Gnosis Chain"
-                                    aria-label="Gnosis Chain"
-                                >
-                                    Gnosis Chain
-                                </ToggleButton>
-                                <ToggleButton
-                                    className={
-                                        network === "Chiado Testnet"
-                                            ? "send-card__element"
-                                            : ""
-                                    }
-                                    value="Chiado Testnet"
-                                    aria-label="Chiado Testnet"
-                                >
-                                    Chiado Testnet
-                                </ToggleButton>
-                            </ToggleButtonGroup>
+                                {networks.map((network) => (
+                                    <MenuItem key={network} value={network}>
+                                        {network}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Typography variant="body1" fontWeight={"bold"}>
+                            <Typography
+                                variant="body1"
+                                fontFamily="GT-Planar"
+                                fontSize="20px"
+                            >
                                 Wallet
                             </Typography>
                         </Grid>
@@ -162,6 +152,35 @@ export const SendCard = () => {
                                 }}
                             />
                         </Grid>
+                        <Grid item xs={12}>
+                            <Typography
+                                variant="body1"
+                                fontFamily="GT-Planar"
+                                fontSize="20px"
+                            >
+                                Faucet Balance
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                value={faucetBalance}
+                                className="send-card__element"
+                                id="wallet-address"
+                                fullWidth
+                                disabled
+                                InputProps={{
+                                    endAdornment: (
+                                        <Button
+                                            className="send-card__text-button"
+                                            variant="outlined"
+                                            sx={{ fontWeight: "bold" }}
+                                        >
+                                            xDAI
+                                        </Button>
+                                    ),
+                                }}
+                            />
+                        </Grid>                        
                         {hash && (
                             <Grid item xs={12}>
                                 <Typography variant="body1" fontWeight={"bold"}>
@@ -175,6 +194,15 @@ export const SendCard = () => {
                                 </Typography>
                             </Grid>
                         )}
+                        <Grid item xs={12}>
+                            <Typography
+                                variant="body1"
+                                fontFamily="GT-Planar"
+                                fontSize="20px"
+                            >
+                                Verify
+                            </Typography>
+                        </Grid>                        
                         <Grid item xs={12}>
                             <HCaptcha
                                 size={isTabletOrMobile ? "compact" : "normal"}

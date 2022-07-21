@@ -14,7 +14,15 @@ code {
 
 @font-face {
     font-family: "GT-Planar";
-    src: url("./fonts/GT-Planar/GT-Planar-Regular.woff2") format("woff2"),
-        url("./fonts/GT-Planar/GT-Planar-Regular.woff") format("woff"),
-        url("./fonts/GT-Planar/GT-Planar-Regular.ttf") format("truetype");
+    src: url("./fonts/GT-Planar/GT-Planar-Bold.woff2") format("woff2"),
+        url("./fonts/GT-Planar/GT-Planar-Bold.woff") format("woff"),
+        url("./fonts/GT-Planar/GT-Planar-Bold.ttf") format("truetype");
+}
+
+
+@font-face {
+  font-family: "GT-Planar-Regular";
+  src: url("./fonts/GT-Planar/GT-Planar-Regular.woff2") format("woff2"),
+      url("./fonts/GT-Planar/GT-Planar-Regular.woff") format("woff"),
+      url("./fonts/GT-Planar/GT-Planar-Regular.ttf") format("truetype");
 }

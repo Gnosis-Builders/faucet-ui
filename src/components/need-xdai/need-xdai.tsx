@@ -7,8 +7,9 @@ const NeedxDAI = () => {
         <Container maxWidth="sm">
             <Typography
                 variant="h3"
-                fontFamily="monospace"
+                fontFamily="GT-Planar"
                 fontSize="48px"
+                fontWeight="bold"
                 align="center"
                 marginTop="1em"
                 className="nx__colorful"

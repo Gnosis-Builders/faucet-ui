@@ -12,19 +12,27 @@
     &__element {
         background-color: white !important;
         border-radius: 5px !important;
+        font-family: 'GT-Planar' !important;
+        font-size: 20px !important;
+        font-weight: 500 !important;
     }
 
     &__text-button {
         border: none !important;
         text-transform: none !important;
         color: #171717 !important;
+        font-family: 'GT-Planar' !important;
+        font-size: 20px !important;
+        font-weight: 700 !important;        
     }
 
     &__white-button {
         background-color: white !important;
         text-transform: none !important;
         color: #171717 !important;
-        font-weight: bold !important;
+        font-family: 'GT-Planar' !important;
+        font-size: 20px !important;
+        font-weight: bold !important;        
     }
 
     &__white-button:hover {
