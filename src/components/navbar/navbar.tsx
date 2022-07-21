@@ -29,7 +29,7 @@ export const NavBar = () => {
                         className="navbar__title"
                     ></Typography>
 
-                    <Button color="inherit">Support</Button>
+                    <Button color="inherit" className="navbar__button">Support</Button>
                 </Toolbar>
             </AppBar>
         </div>

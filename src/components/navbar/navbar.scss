@@ -7,18 +7,25 @@
         }
     }
 
-    &__logo {        
-        max-width: 324px;
-        max-height: 72px;
-    }    
+    &__logo {
+        max-width: 371px;
+        max-height: 39px;
+    }
 
-    &__logo-small {        
+    &__logo-small {
         max-width: 162px;
         max-height: 63px;
-    }        
+    }
 
     &__title {
-        flex-grow: 1;
-        text-align: center;
+        flex-grow: 1 !important;
+        text-align: center !important;
+    }
+
+    &__button {
+        font-family: "GT-Planar" !important;
+        font-weight: 500 !important;
+        font-size: 24px !important;
+        text-transform: none !important;
     }
 }
