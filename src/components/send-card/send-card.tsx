@@ -13,7 +13,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Container } from "@mui/system";
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "../loading";
 import "./send-card.scss";
@@ -24,9 +24,24 @@ export const SendCard = () => {
     const [hash, setHash] = useState<string>();
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
-    const [faucetBalance, setFaucetBalance] = useState<string>("12.010");
+    const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
 
     const networks = ["Gnosis Chain"];
+
+    useEffect(() => {
+        const getWalletBalance = async () => {
+            const url = `${
+                process.env.REACT_APP_BACKEND_URL as string
+            }/wallet-balance`;
+
+            const response = await axios.get(url);
+
+            setFaucetBalance((+response.data.data).toFixed(5));
+            console.log(response);
+        }
+
+        getWalletBalance();
+    }, []);
 
     const handleNetworkChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNetwork(event.target.value);

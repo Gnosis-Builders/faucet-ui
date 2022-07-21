@@ -124,6 +124,8 @@ const FAQ = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography
+                        component={"span"}
+                        variant={"body2"}
                         fontFamily="GT-Planar-Regular"
                         fontSize="16px"
                         align="justify"
