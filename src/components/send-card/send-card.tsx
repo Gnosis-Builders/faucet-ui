@@ -69,6 +69,8 @@ export const SendCard = () => {
                         setShowLoading(false);
                         if (response.data.status === "success") {
                             setHash(response.data.data);
+                            setWalletAddress("");
+                            setCaptchaVerified(false);
                             toast(
                                 "xDAI sent to your wallet address. Hash: " +
                                     response.data.data
@@ -183,7 +185,7 @@ export const SendCard = () => {
 
                         <Grid item xs={12}>
                             <Button
-                                // disabled={!captchaVerified}
+                                disabled={!captchaVerified}
                                 className="send-card__white-button"
                                 fullWidth
                                 variant="outlined"
