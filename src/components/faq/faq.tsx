@@ -21,12 +21,10 @@ const FAQ = () => {
     return (
         <Container maxWidth="sm">
             <Typography
-                variant="h3"
-                fontFamily="sans-serif"
+                fontFamily="GT-Planar"
                 fontSize="35px"
-                fontWeight="bold"
                 align="center"
-                marginTop="1em"
+                marginTop="1.5em"
             >
                 FAQ
             </Typography>
@@ -41,8 +39,8 @@ const FAQ = () => {
                     id="panel1a-header"
                 >
                     <Typography
-                        fontFamily="sans-serif"
-                        fontSize="16px"
+                        fontFamily="GT-Planar"
+                        fontSize="18px"
                         fontWeight="bold"
                     >
                         What is a faucet
@@ -50,16 +48,18 @@ const FAQ = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography
-                        fontFamily="sans-serif"
+                        fontFamily="GT-Planar-Regular"
                         fontSize="16px"
                         align="justify"
                     >
-                        A crypto faucet is a tool that distributes small amounts
-                        of tokens to perform transactions on a blockchain
-                        network. The Gnosis Chain xDAI faucet distributes xDAI
-                        to new users so that they may have enough gas to
-                        complete a few transactions and interact with
-                        applications on Gnosis Chain.
+                        <span id="need-more">
+                            A crypto faucet is a tool that distributes small
+                            amounts of tokens to perform transactions on a
+                            blockchain network. The Gnosis Chain xDAI faucet
+                            distributes xDAI to new users so that they may have
+                            enough gas to complete a few transactions and
+                            interact with applications on Gnosis Chain.
+                        </span>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -75,8 +75,8 @@ const FAQ = () => {
                     id="panel2a-header"
                 >
                     <Typography
-                        fontFamily="sans-serif"
-                        fontSize="16px"
+                        fontFamily="GT-Planar"
+                        fontSize="18px"
                         fontWeight="bold"
                     >
                         What is xDAI
@@ -84,13 +84,22 @@ const FAQ = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography
-                        fontFamily="sans-serif"
+                        fontFamily="GT-Planar-Regular"
                         fontSize="16px"
                         align="justify"
                     >
                         xDai tokens are transactional tokens on the Gnosis Chain
                         and also used to pay for execution of smart contracts
-                        and gas fees.
+                        and gas fees. For more information regarding xDAI, visit
+                        the{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href="https://developers.gnosischain.com/for-users/get-xdai-tokens"
+                        >
+                            {" "}
+                            Gnosis Chain documentation.
+                        </a>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -106,8 +115,8 @@ const FAQ = () => {
                     id="panel3a-header"
                 >
                     <Typography
-                        fontFamily="sans-serif"
-                        fontSize="16px"
+                        fontFamily="GT-Planar"
+                        fontSize="18px"
                         fontWeight="bold"
                     >
                         Faucet usage conditions
@@ -115,42 +124,17 @@ const FAQ = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography
-                        fontFamily="sans-serif"
+                        fontFamily="GT-Planar-Regular"
                         fontSize="16px"
                         align="justify"
                     >
                         Users who wish to obtain xDAI from the Gnosis Chain
-                        faucet must 1. have an xDAI balance below 0.001 and 2.
-                        have solved the captcha verification.
+                        faucet must{" "}
+                        <ol>
+                            <li>have an xDAI balance below 0.001 and</li>
+                            <li>have solved the captcha verification.</li>
+                        </ol>
                     </Typography>
-                </AccordionDetails>
-            </Accordion>
-
-            <Accordion
-                className="faq__accordion"
-                disabled
-                expanded={expanded === "wdffcf"}
-                onChange={handleChange("wdffcf")}
-            >
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel4a-content"
-                    id="panel4a-header"
-                >
-                    <Typography
-                        fontFamily="sans-serif"
-                        fontSize="16px"
-                        fontWeight="bold"
-                    >
-                        Where do faucet funds come from
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography
-                        fontFamily="sans-serif"
-                        fontSize="16px"
-                        align="justify"
-                    ></Typography>
                 </AccordionDetails>
             </Accordion>
 
@@ -165,23 +149,73 @@ const FAQ = () => {
                     id="panel4a-header"
                 >
                     <Typography
-                        fontFamily="sans-serif"
-                        fontSize="16px"
+                        fontFamily="GT-Planar"
+                        fontSize="18px"
                         fontWeight="bold"
                     >
                         How can I get more xDAI
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>
+                    <Typography
+                        fontFamily="GT-Planar-Regular"
+                        fontSize="16px"
+                        align="justify"
+                    >
                         Users who wish to obtain more than 0.001 xDAI have the
-                        option to bridge their DAI directly or bridge other
-                        ERC-20 tokens from Ethereum mainnet to Gnosis Chain,
-                        where they can swap for DAI on any DEX. Users without
-                        existing crypto can use a centralized exchange or fiat
-                        on-ramp to purchase their DAI. Click here for more
-                        information on how to perform any of the above listed
-                        activities.
+                        option to{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href="https://bridge.gnosischain.com/"
+                        >
+                            bridge
+                        </a>{" "}
+                        their DAI directly from Ethereum mainnet to Gnosis
+                        Chain. If a user wishes to bridge other ERC-20 tokens,
+                        they may do so using{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href="https://omni.gnosischain.com/bridge"
+                        >
+                            Omni Bridge
+                        </a>
+                        , where they can swap for DAI on any{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href="https://gnosischain.world/#DeFi"
+                        >
+                            DEX
+                        </a>
+                        . Users without existing crypto can use a centralized
+                        exchange such as{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href="https://ascendex.com/en/basic/cashtrade-spottrading/usdt/xdai"
+                        >
+                            Ascendex
+                        </a>
+                        , or a fiat on-ramp such as{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href="https://ramp.network/"
+                        >
+                            Ramp
+                        </a>
+                        , to purchase their DAI. Click{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href="https://developers.gnosischain.com/for-users/get-xdai-tokens#how-to-get-xdai-stable-tokens"
+                        >
+                            here
+                        </a>{" "}
+                        for more information on how to perform any of the above
+                        listed activities.
                     </Typography>
                 </AccordionDetails>
             </Accordion>

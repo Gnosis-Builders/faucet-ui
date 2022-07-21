@@ -5,6 +5,7 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #F0EBDE;
 }
 
 code {
@@ -25,4 +26,14 @@ code {
   src: url("./fonts/GT-Planar/GT-Planar-Regular.woff2") format("woff2"),
       url("./fonts/GT-Planar/GT-Planar-Regular.woff") format("woff"),
       url("./fonts/GT-Planar/GT-Planar-Regular.ttf") format("truetype");
+}
+
+a {
+    color: brown;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+a:hover {
+    color: burlywood;
 }
