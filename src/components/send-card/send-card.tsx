@@ -20,7 +20,7 @@ import "./send-card.scss";
 
 export const SendCard = () => {
     const [network, setNetwork] = useState<string>("Gnosis Chain");
-    const [captchaVerified, setCaptchaVerified] = useState(false);
+    const [captchaVerified, setCaptchaVerified] = useState(true);
     const [hash, setHash] = useState<string>();
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");

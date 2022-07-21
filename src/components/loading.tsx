@@ -1,16 +1,20 @@
-import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
-import LoadingIcon from "./icons/loading";
+import { Box, CircularProgress } from "@mui/material";
 
 interface Props {
-  open: boolean;
+    open: boolean;
 }
 export default function Loading(props: Props) {
-  const { open } = props;
+    const { open } = props;
 
-  return (
-    <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open}>
-      <LoadingIcon />
-    </Backdrop>
-  );
+    return (
+        <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+        >
+            <Box sx={{ display: "flex" }}>
+                <CircularProgress />
+            </Box>
+        </Backdrop>
+    );
 }
