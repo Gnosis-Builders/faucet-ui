@@ -18,7 +18,7 @@ const NeedxDAI = () => {
             </Typography>
             <p className="nx__paragraph nx__paragraph__center">
                 This faucet is the official xDAI faucet for Gnosis Chain. Input
-                your address, complete verification, and receive 0.001 xDAI to
+                your address, complete verification, and receive 0.01 xDAI to
                 your wallet in seconds. If you need more than 0.01 xDAI, see&nbsp;
                 <a href="#need-more">here</a>.
             </p>
