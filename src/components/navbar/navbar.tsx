@@ -29,7 +29,15 @@ export const NavBar = () => {
                         className="navbar__title"
                     ></Typography>
 
-                    <Button color="inherit" className="navbar__button">Support</Button>
+                    <a
+                        href="https://discord.gg/gnosischain"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        <Button color="inherit" className="navbar__button">
+                            Support
+                        </Button>
+                    </a>
                 </Toolbar>
             </AppBar>
         </div>

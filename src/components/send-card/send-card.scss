@@ -1,12 +1,9 @@
 .send-card {
     &__green-area {
-        background-color: #6ccd6b;
+        background-color: #3E6957;
         border-color: #6ccd6b;
-        border-radius: 10px;
-    }
-
-    &__toggle-container {
-        background-color: rgba(255, 255, 255, 0.7);
+        border: 3px solid #133629;
+        border-radius: 20px;        
     }
 
     &__element {
@@ -40,6 +37,14 @@
     }
 
     &__white-button:disabled {
+        color: grey !important;
         background-color: rgba(255, 255, 255, 0.1) !important;
     }
+}
+
+.MuiCard-root {
+    background-color: #F0EBDE !important;
+    border: none !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
 }

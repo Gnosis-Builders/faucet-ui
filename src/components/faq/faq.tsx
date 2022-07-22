@@ -39,6 +39,7 @@ const FAQ = () => {
                     id="panel1a-header"
                 >
                     <Typography
+                        color="white"
                         fontFamily="GT-Planar"
                         fontSize="18px"
                         fontWeight="bold"
@@ -75,6 +76,7 @@ const FAQ = () => {
                     id="panel2a-header"
                 >
                     <Typography
+                        color="white"
                         fontFamily="GT-Planar"
                         fontSize="18px"
                         fontWeight="bold"
@@ -115,6 +117,7 @@ const FAQ = () => {
                     id="panel3a-header"
                 >
                     <Typography
+                        color="white"
                         fontFamily="GT-Planar"
                         fontSize="18px"
                         fontWeight="bold"
@@ -133,7 +136,7 @@ const FAQ = () => {
                         Users who wish to obtain xDAI from the Gnosis Chain
                         faucet must{" "}
                         <ol>
-                            <li>have an xDAI balance below 0.01 and</li>
+                            <li>have an xDAI balance below 0.001 and</li>
                             <li>have solved the captcha verification.</li>
                         </ol>
                     </Typography>
@@ -151,6 +154,7 @@ const FAQ = () => {
                     id="panel4a-header"
                 >
                     <Typography
+                        color="white"
                         fontFamily="GT-Planar"
                         fontSize="18px"
                         fontWeight="bold"
@@ -164,7 +168,7 @@ const FAQ = () => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain more than 0.01 xDAI have the
+                        Users who wish to obtain more than 0.001 xDAI have the
                         option to{" "}
                         <a
                             target="_blank"

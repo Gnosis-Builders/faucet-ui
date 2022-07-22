@@ -36,7 +36,7 @@ export const SendCard = () => {
 
             setFaucetBalance((+response.data.data).toFixed(5));
             console.log(response);
-        }
+        };
 
         getWalletBalance();
     }, []);
@@ -110,6 +110,7 @@ export const SendCard = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography
+                                color="white"
                                 variant="body1"
                                 fontFamily="GT-Planar"
                                 fontSize="20px"
@@ -137,6 +138,7 @@ export const SendCard = () => {
 
                         <Grid item xs={12}>
                             <Typography
+                                color="white"
                                 variant="body1"
                                 fontFamily="GT-Planar"
                                 fontSize="20px"
@@ -165,8 +167,9 @@ export const SendCard = () => {
                                 }}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <Typography
+                                color="white"
                                 variant="body1"
                                 fontFamily="GT-Planar"
                                 fontSize="20px"
@@ -193,10 +196,14 @@ export const SendCard = () => {
                                     ),
                                 }}
                             />
-                        </Grid>                        
+                        </Grid>                         */}
                         {hash && (
                             <Grid item xs={12}>
-                                <Typography variant="body1" fontWeight={"bold"}>
+                                <Typography
+                                    color="white"
+                                    variant="body1"
+                                    fontWeight={"bold"}
+                                >
                                     <a
                                         target="_blank"
                                         rel="noreferrer noopener"
@@ -209,13 +216,14 @@ export const SendCard = () => {
                         )}
                         <Grid item xs={12}>
                             <Typography
+                                color="white"
                                 variant="body1"
                                 fontFamily="GT-Planar"
                                 fontSize="20px"
                             >
                                 Verify
                             </Typography>
-                        </Grid>                        
+                        </Grid>
                         <Grid item xs={12}>
                             <HCaptcha
                                 size={isTabletOrMobile ? "compact" : "normal"}
