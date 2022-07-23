@@ -49,7 +49,7 @@ export const BottomBar = () => {
                             target="_blank"
                             rel="noreferrer noopener"
                             className="bottombar__no-decoration"
-                            href="https://discord.gg/gnosischain"
+                            href="https://discord.gg/VA2reyVXUn"
                         >
                             Discord
                         </a>

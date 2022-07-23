@@ -30,7 +30,7 @@ export const NavBar = () => {
                     ></Typography>
 
                     <a
-                        href="https://discord.gg/gnosischain"
+                        href="https://discord.gg/VA2reyVXUn"
                         target="_blank"
                         rel="noreferrer noopener"
                     >
