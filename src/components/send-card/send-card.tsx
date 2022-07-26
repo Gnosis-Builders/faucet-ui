@@ -26,6 +26,7 @@ export const SendCard = () => {
     const [walletAddress, setWalletAddress] = useState<string>("");
     const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
     const [amount, setAmount] = useState<string>("0.001");
+    const [tweetText, setTweetText] = useState<string>("");
 
     const networks = ["Gnosis Chain"];
 
@@ -60,6 +61,8 @@ export const SendCard = () => {
     ) => {
       if (newAmount !== null) {
         setAmount(newAmount);
+        const newTweetText:string = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nRequest ID: #ROBOT\nhttps://gnosischain.com/get-xdai`
+        setTweetText(newTweetText);
       }
     };
 
@@ -264,6 +267,36 @@ export const SendCard = () => {
                                 onVerify={onVerifyCaptcha}
                             />
                         </Grid>
+
+                        {
+                          amount === "0.01" && (
+                          <>
+                            <Grid item xs={12}>
+                                <Typography
+                                    color="white"
+                                    variant="body1"
+                                    fontFamily="GT-Planar"
+                                    fontSize="20px"
+                                >
+                                    Send A Tweet
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                  className="send-card__element"
+                                  value={ tweetText }
+                                  id="tweet-text"
+                                  name="tweet-text"
+                                  fullWidth
+                                  multiline
+                                  InputProps={{
+                                    readOnly: true,
+                                  }}
+                                />
+                            </Grid>
+                          </>
+                          )
+                        }
 
                         <Grid item xs={12}>
                             <Button
