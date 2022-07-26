@@ -61,7 +61,7 @@ export const SendCard = () => {
     ) => {
       if (newAmount !== null) {
         setAmount(newAmount);
-        const newTweetText:string = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nRequest ID: #ROBOT\nhttps://gnosischain.com/get-xdai`
+        const newTweetText:string = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nhttps://gnosischain.com/get-xdai`
         setTweetText(newTweetText);
       }
     };
