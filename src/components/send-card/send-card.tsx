@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { Container } from "@mui/system";
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -23,6 +25,7 @@ export const SendCard = () => {
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
     const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
+    const [amount, setAmount] = useState<string>("0.001");
 
     const networks = ["Gnosis Chain"];
 
@@ -49,6 +52,15 @@ export const SendCard = () => {
         event: ChangeEvent<HTMLInputElement>
     ) => {
         setWalletAddress(event.target.value);
+    };
+
+    const handleAmountChange = (
+      event: React.MouseEvent<HTMLElement>,
+      newAmount: string,
+    ) => {
+      if (newAmount !== null) {
+        setAmount(newAmount);
+      }
     };
 
     const onVerifyCaptcha = (token: string) => {
@@ -166,6 +178,27 @@ export const SendCard = () => {
                                     ),
                                 }}
                             />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Typography
+                                color="white"
+                                variant="body1"
+                                fontFamily="GT-Planar"
+                                fontSize="20px"
+                            >
+                                Request Amount
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <ToggleButtonGroup
+                            className="send-card__element"
+                            value={ amount }
+                            exclusive
+                            onChange={ handleAmountChange }>
+                            <ToggleButton value="0.001">0.001 xDAI</ToggleButton>
+                            <ToggleButton value="0.01">0.01 xDAI</ToggleButton>
+                          </ToggleButtonGroup>
                         </Grid>
                         {/* <Grid item xs={12}>
                             <Typography
