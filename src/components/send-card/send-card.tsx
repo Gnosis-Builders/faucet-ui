@@ -17,6 +17,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "../loading";
 import "./send-card.scss";
+import { lowerAmount, higherAmount } from "../../constants/Amounts";
 
 export const SendCard = () => {
     const [network, setNetwork] = useState<string>("Gnosis Chain");
@@ -25,7 +26,7 @@ export const SendCard = () => {
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
     const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
-    const [amount, setAmount] = useState<string>("0.001");
+    const [amount, setAmount] = useState<string>(lowerAmount.toString());
     const [tweetText, setTweetText] = useState<string>("");
 
     const networks = ["Gnosis Chain"];
@@ -199,8 +200,8 @@ export const SendCard = () => {
                             value={ amount }
                             exclusive
                             onChange={ handleAmountChange }>
-                            <ToggleButton value="0.001">0.001 xDAI</ToggleButton>
-                            <ToggleButton value="0.01">0.01 xDAI</ToggleButton>
+                            <ToggleButton value={ lowerAmount.toString() }>{ lowerAmount } xDAI</ToggleButton>
+                            <ToggleButton value={ higherAmount.toString() }>{ higherAmount } xDAI</ToggleButton>
                           </ToggleButtonGroup>
                         </Grid>
                         {/* <Grid item xs={12}>
@@ -269,7 +270,7 @@ export const SendCard = () => {
                         </Grid>
 
                         {
-                          amount === "0.01" && (
+                          amount === higherAmount.toString() && (
                           <>
                             <Grid item xs={12}>
                                 <Typography
