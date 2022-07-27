@@ -2,7 +2,16 @@ import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import "./need-xdai.scss";
 
-const NeedxDAI = () => {
+type NeedxDAIProps = {
+  openGetMoreFaq: Function;
+};
+
+const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
+    const handleGetMoreXDAI = (event: React.MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      openGetMoreFaq();
+    }
+
     return (
         <Container maxWidth="sm">
             <Typography
@@ -20,7 +29,7 @@ const NeedxDAI = () => {
               This faucet is the official xDAI faucet for Gnosis Chain. Input 
               your address, complete verification, and receive a small amount 
               of xDAI to your wallet in seconds. If you need more than 0.01 xDAI, see&nbsp;
-              <a href="#need-more">here</a>.
+              <a href="#need-more" onClick={ handleGetMoreXDAI }>here</a>.
             </p>
         </Container>
     );

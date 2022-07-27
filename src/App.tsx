@@ -8,8 +8,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { BottomBar } from "./components/bottom-bar/bottom-bar";
+import { useState } from "react";
 
 function App() {
+    const [openGetMoreFaq, setOpenGetMoreFaq] = useState<Function>(() => {});
+
     return (
         <Fragment>
             <Container maxWidth="xl" sx={{ marginBottom: "2em" }}>
@@ -25,9 +28,9 @@ function App() {
                     pauseOnHover
                 />
                 <NavBar />
-                <NeedxDAI />
+                <NeedxDAI openGetMoreFaq={ openGetMoreFaq }/>
                 <SendCard />
-                <FAQ />
+                <FAQ setOpenGetMoreFaq={ setOpenGetMoreFaq }/>
             </Container>
             <Container maxWidth="lg">
             <BottomBar />

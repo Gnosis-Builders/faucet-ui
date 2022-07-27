@@ -7,9 +7,13 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Container } from "@mui/system";
 import "./faq.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const FAQ = () => {
+type FAQProps = {
+  setOpenGetMoreFaq: Function;
+};
+
+const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
     const [expanded, setExpanded] = useState<string | false>("panel1");
 
     const handleChange =
@@ -17,6 +21,10 @@ const FAQ = () => {
         (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
+
+    useEffect(() => {
+      setOpenGetMoreFaq(() => () => setExpanded("hcigmx"));
+    }, [])
 
     return (
         <Container maxWidth="sm">
