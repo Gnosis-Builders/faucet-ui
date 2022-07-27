@@ -17,10 +17,10 @@ const NeedxDAI = () => {
                 Need xDAI?
             </Typography>
             <p className="nx__paragraph nx__paragraph__center">
-                This faucet is the official xDAI faucet for Gnosis Chain. Input
-                your address, complete verification, and receive 0.001 xDAI to
-                your wallet in seconds. If you need more than 0.001 xDAI, see&nbsp;
-                <a href="#need-more">here</a>.
+              This faucet is the official xDAI faucet for Gnosis Chain. Input 
+              your address, complete verification, and receive a small amount 
+              of xDAI to your wallet in seconds. If you need more than 0.01 xDAI, see&nbsp;
+              <a href="#need-more">here</a>.
             </p>
         </Container>
     );
