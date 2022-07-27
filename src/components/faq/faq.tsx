@@ -184,7 +184,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain more than 0.001 xDAI have the
+                        Users who wish to obtain more than 0.01 xDAI have the
                         option to{" "}
                         <a
                             target="_blank"
