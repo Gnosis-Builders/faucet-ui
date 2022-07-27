@@ -7,7 +7,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Container } from "@mui/system";
 import "./faq.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type FAQProps = {
   setOpenGetMoreFaq: Function;
@@ -22,9 +22,16 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
             setExpanded(newExpanded ? panel : false);
         };
 
+    const getMoreFaqRef = useRef<HTMLDivElement | null>(null);
+
     useEffect(() => {
-      setOpenGetMoreFaq(() => () => setExpanded("hcigmx"));
-    }, [])
+      setOpenGetMoreFaq(() => () => {
+        setExpanded("hcigmx");
+        if (getMoreFaqRef.current !== null) {
+          getMoreFaqRef.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+        }
+      });
+    }, []);
 
     return (
         <Container maxWidth="sm">
@@ -160,6 +167,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel4a-content"
                     id="panel4a-header"
+                    ref={getMoreFaqRef}
                 >
                     <Typography
                         color="white"
