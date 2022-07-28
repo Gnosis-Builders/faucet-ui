@@ -38,7 +38,7 @@
 
     &__white-button:disabled {
         color: grey !important;
-        background-color: rgba(255, 255, 255, 0.1) !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
     }
 }
 
@@ -47,4 +47,17 @@
     border: none !important;
     border-radius: 0px !important;
     box-shadow: none !important;
+}
+
+.MuiToggleButton-root {
+    font-family: 'GT-Planar-Regular' !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;    
+    text-transform: none !important;
+    background-color: white !important;
+}
+
+.Mui-selected {
+    color: #171717 !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
