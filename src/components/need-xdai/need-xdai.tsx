@@ -3,7 +3,7 @@ import { Container } from "@mui/system";
 import "./need-xdai.scss";
 
 type NeedxDAIProps = {
-  openGetMoreFaq: Function;
+  openGetMoreFaq: () => void;
 };
 
 const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {

@@ -10,7 +10,7 @@ import "./faq.scss";
 import { useState, useEffect, useRef } from "react";
 
 type FAQProps = {
-  setOpenGetMoreFaq: Function;
+  setOpenGetMoreFaq: (x: () => void) => void;
 };
 
 const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
