@@ -22,10 +22,10 @@ import { lowerAmount, higherAmount } from "../../constants/Amounts";
 export const SendCard = () => {
     const [network, setNetwork] = useState<string>("Gnosis Chain");
     const [captchaVerified, setCaptchaVerified] = useState(false);
-    const [hash, setHash] = useState<string>();
+    const [hash, setHash] = useState<string>("");
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
-    const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
+    // const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
     const [amount, setAmount] = useState<string>(lowerAmount.toString());
     const [tweetText, setTweetText] = useState<string>("");
 
@@ -38,8 +38,6 @@ export const SendCard = () => {
             }/wallet-balance`;
 
             const response = await axios.get(url);
-
-            setFaucetBalance((+response.data.data).toFixed(5));
             console.log(response);
         };
 
@@ -62,7 +60,7 @@ export const SendCard = () => {
     ) => {
       if (newAmount !== null) {
         setAmount(newAmount);
-        const newTweetText:string = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nhttps://gnosischain.com/get-xdai`
+        const newTweetText = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nhttps://gnosischain.com/get-xdai`
         setTweetText(newTweetText);
       }
     };
@@ -111,9 +109,11 @@ export const SendCard = () => {
                         setShowLoading(false);
                         toast.error(error.response.data.data.error);
                     });
-            } catch (error: any) {
+            } catch (error) {
                 setShowLoading(false);
-                toast.error(error.message);
+                if(error instanceof Error) {
+                    toast.error(error.message);
+                }
             }
         }
     };
@@ -204,37 +204,7 @@ export const SendCard = () => {
                             <ToggleButton value={ higherAmount.toString() }>{ higherAmount } xDAI</ToggleButton>
                           </ToggleButtonGroup>
                         </Grid>
-                        {/* <Grid item xs={12}>
-                            <Typography
-                                color="white"
-                                variant="body1"
-                                fontFamily="GT-Planar"
-                                fontSize="20px"
-                            >
-                                Faucet Balance
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                value={faucetBalance}
-                                className="send-card__element"
-                                id="wallet-address"
-                                fullWidth
-                                disabled
-                                InputProps={{
-                                    endAdornment: (
-                                        <Button
-                                            className="send-card__text-button"
-                                            variant="outlined"
-                                            sx={{ fontWeight: "bold" }}
-                                        >
-                                            xDAI
-                                        </Button>
-                                    ),
-                                }}
-                            />
-                        </Grid>                         */}
-                        {hash && (
+                        {(hash !== undefined && hash.length > 0) && (
                             <Grid item xs={12}>
                                 <Typography
                                     color="white"

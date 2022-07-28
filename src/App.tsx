@@ -11,7 +11,7 @@ import { BottomBar } from "./components/bottom-bar/bottom-bar";
 import { useState } from "react";
 
 function App() {
-    const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(() => () => {});
+    const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(() => () => null);
 
     return (
         <Fragment>
