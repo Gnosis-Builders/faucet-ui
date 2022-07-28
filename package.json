@@ -28,6 +28,12 @@
     },
     "scripts": {
         "preinstall": "npx only-allow yarn",
+        "linter": "yarn lint:check && yarn format:check",
+        "linter:fix": "yarn lint:fix && yarn format:fix",
+        "lint:check": "npx eslint src/ --ext .js,.jsx,.ts,.tsx",
+        "format:check": "npx prettier --check src/**/*.ts*",
+        "format:fix": "npx prettier --check --write src/**/*.ts*",
+        "lint:fix": "npx eslint src/ --ext .js,.jsx,.ts,.tsx --fix",        
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
