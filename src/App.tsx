@@ -1,5 +1,5 @@
 import { Container } from "@mui/system";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import FAQ from "./components/faq/faq";
 import { NavBar } from "./components/navbar/navbar";
 import NeedxDAI from "./components/need-xdai/need-xdai";
