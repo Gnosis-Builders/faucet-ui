@@ -1,4 +1,4 @@
-name: CI
+name: LinterChecker
 on: [pull_request]
 jobs:
   build:
