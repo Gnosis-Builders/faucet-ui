@@ -9,12 +9,15 @@ import {
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { Container } from "@mui/system";
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "../loading";
 import "./send-card.scss";
+import { lowerAmount, higherAmount } from "../../constants/Amounts";
 
 export const SendCard = () => {
     const [network, setNetwork] = useState<string>("Gnosis Chain");
@@ -23,6 +26,8 @@ export const SendCard = () => {
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
     const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
+    const [amount, setAmount] = useState<string>(lowerAmount.toString());
+    const [tweetText, setTweetText] = useState<string>("");
 
     const networks = ["Gnosis Chain"];
 
@@ -49,6 +54,17 @@ export const SendCard = () => {
         event: ChangeEvent<HTMLInputElement>
     ) => {
         setWalletAddress(event.target.value);
+    };
+
+    const handleAmountChange = (
+      event: React.MouseEvent<HTMLElement>,
+      newAmount: string,
+    ) => {
+      if (newAmount !== null) {
+        setAmount(newAmount);
+        const newTweetText:string = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nhttps://gnosischain.com/get-xdai`
+        setTweetText(newTweetText);
+      }
     };
 
     const onVerifyCaptcha = (token: string) => {
@@ -167,6 +183,27 @@ export const SendCard = () => {
                                 }}
                             />
                         </Grid>
+
+                        <Grid item xs={12}>
+                            <Typography
+                                color="white"
+                                variant="body1"
+                                fontFamily="GT-Planar"
+                                fontSize="20px"
+                            >
+                                Request Amount
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <ToggleButtonGroup
+                            className="send-card__element"
+                            value={ amount }
+                            exclusive
+                            onChange={ handleAmountChange }>
+                            <ToggleButton value={ lowerAmount.toString() }>{ lowerAmount } xDAI</ToggleButton>
+                            <ToggleButton value={ higherAmount.toString() }>{ higherAmount } xDAI</ToggleButton>
+                          </ToggleButtonGroup>
+                        </Grid>
                         {/* <Grid item xs={12}>
                             <Typography
                                 color="white"
@@ -231,6 +268,36 @@ export const SendCard = () => {
                                 onVerify={onVerifyCaptcha}
                             />
                         </Grid>
+
+                        {
+                          amount === higherAmount.toString() && (
+                          <>
+                            <Grid item xs={12}>
+                                <Typography
+                                    color="white"
+                                    variant="body1"
+                                    fontFamily="GT-Planar"
+                                    fontSize="20px"
+                                >
+                                    Send A Tweet
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                  className="send-card__element"
+                                  value={ tweetText }
+                                  id="tweet-text"
+                                  name="tweet-text"
+                                  fullWidth
+                                  multiline
+                                  InputProps={{
+                                    readOnly: true,
+                                  }}
+                                />
+                            </Grid>
+                          </>
+                          )
+                        }
 
                         <Grid item xs={12}>
                             <Button

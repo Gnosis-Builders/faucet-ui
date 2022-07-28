@@ -7,9 +7,13 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Container } from "@mui/system";
 import "./faq.scss";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const FAQ = () => {
+type FAQProps = {
+  setOpenGetMoreFaq: (x: () => void) => void;
+};
+
+const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
     const [expanded, setExpanded] = useState<string | false>("panel1");
 
     const handleChange =
@@ -17,6 +21,17 @@ const FAQ = () => {
         (event: React.SyntheticEvent, newExpanded: boolean) => {
             setExpanded(newExpanded ? panel : false);
         };
+
+    const getMoreFaqRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      setOpenGetMoreFaq(() => () => {
+        setExpanded("hcigmx");
+        if (getMoreFaqRef.current !== null) {
+          getMoreFaqRef.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+        }
+      });
+    }, []);
 
     return (
         <Container maxWidth="sm">
@@ -152,6 +167,7 @@ const FAQ = () => {
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel4a-content"
                     id="panel4a-header"
+                    ref={getMoreFaqRef}
                 >
                     <Typography
                         color="white"
@@ -168,7 +184,7 @@ const FAQ = () => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain more than 0.001 xDAI have the
+                        Users who wish to obtain more than 0.01 xDAI have the
                         option to{" "}
                         <a
                             target="_blank"
