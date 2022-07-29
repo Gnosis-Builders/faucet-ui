@@ -37,7 +37,7 @@
         "format:fix": "npx prettier --ignore-path .gitignore --check --write src/**/*.ts*",
         "lint:fix": "npx eslint src/ --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
         "start": "react-scripts start",
-        "build": "react-scripts build",
+        "build": "yarn linter && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
