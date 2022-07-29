@@ -25,7 +25,6 @@ export const SendCard = () => {
     const [hash, setHash] = useState<string>("");
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
-    // const [faucetBalance, setFaucetBalance] = useState<string>("0.000");
     const [amount, setAmount] = useState<string>(lowerAmount.toString());
     const [tweetText, setTweetText] = useState<string>("");
 
