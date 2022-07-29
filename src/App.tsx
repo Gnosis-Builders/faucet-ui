@@ -1,5 +1,5 @@
 import { Container } from "@mui/system";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import FAQ from "./components/faq/faq";
 import { NavBar } from "./components/navbar/navbar";
 import NeedxDAI from "./components/need-xdai/need-xdai";
@@ -11,7 +11,7 @@ import { BottomBar } from "./components/bottom-bar/bottom-bar";
 import { useState } from "react";
 
 function App() {
-    const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(() => () => {});
+    const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(() => () => null);
 
     return (
         <Fragment>
