@@ -28,8 +28,10 @@ const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
             <p className="nx__paragraph nx__paragraph__center">
                 This faucet is the official xDAI faucet for Gnosis Chain. Input
                 your address, complete verification, and receive a small amount
-                of xDAI to your wallet in seconds. If you need more than 0.01
-                xDAI, see&nbsp;
+                of xDAI to your wallet in seconds.
+            </p>
+            <p className="nx__paragraph nx__paragraph__center">
+                If you need more than 0.01 xDAI, see&nbsp;
                 <a href="#need-more" onClick={handleGetMoreXDAI}>
                     here
                 </a>
