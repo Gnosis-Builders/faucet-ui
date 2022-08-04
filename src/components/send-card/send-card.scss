@@ -40,6 +40,10 @@
         color: grey !important;
         background-color: rgba(255, 255, 255, 0.2) !important;
     }
+
+    &__toggle-group {
+        background-color: rgba(191, 220, 208, 0.1) !important;
+    }
 }
 
 .MuiCard-root {
@@ -54,10 +58,15 @@
     font-size: 15px !important;
     font-weight: 500 !important;    
     text-transform: none !important;
-    background-color: white !important;
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    height: 50px !important;   
+    min-width: 200px; 
+    margin: 2px !important;
 }
 
 .Mui-selected {
-    color: #171717 !important;
-    background-color: rgba(0, 0, 0, 0.1) !important;
+    color: black !important;   
+    background-color: white !important; 
+    border-color: green !important;
+    border-radius: 5px !important;
 }

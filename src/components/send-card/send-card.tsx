@@ -225,7 +225,7 @@ export const SendCard = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <ToggleButtonGroup
-                                className="send-card__element"
+                                className="send-card__element send-card__toggle-group"
                                 value={amount}
                                 exclusive
                                 onChange={handleAmountChange}
