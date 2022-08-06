@@ -148,12 +148,10 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain xDAI from the Gnosis Chain
-                        faucet must{" "}
-                        <ol>
-                            <li>have an xDAI balance below 0.001 and</li>
-                            <li>have solved the captcha verification.</li>
-                        </ol>
+                        Users who wish to obtain 0.001 xDAI from the Gnosis Chain
+                        faucet must have solved the captcha verification. Users
+                        who wish to obtain 0.01 xDAI must complete the previous
+                        steps in addition to sending a verification Tweet.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -184,35 +182,27 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain more than 0.01 xDAI have the
-                        option to{" "}
+                        If you already own DAI on Ethereum or another bridge
+                        compatible EVM compatible chain, you will be able to
+                        bridge your DAI to Gnosis Chain and convert it to xDAI.
+                        To do so, we recommend using either{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https://bridge.gnosischain.com/"
+                            href="https://bridge.connext.network/DAI-from-ethereum-to-gnosis"
                         >
-                            bridge
+                            Connext
                         </a>{" "}
-                        their DAI directly from Ethereum mainnet to Gnosis
-                        Chain. If a user wishes to bridge other ERC-20 tokens,
-                        they may do so using{" "}
+                        bridge or{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https://omni.gnosischain.com/bridge"
+                            href="https://app.hop.exchange/#/send?token=DAI&sourceNetwork=ethereum&destNetwork=gnosis"
                         >
-                            Omni Bridge
-                        </a>
-                        , where they can swap for DAI on any{" "}
-                        <a
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            href="https://gnosischain.world/#DeFi"
-                        >
-                            DEX
-                        </a>
-                        . Users without existing crypto can use a centralized
-                        exchange such as{" "}
+                            Hop
+                        </a>{" "}
+                        bridge. Users without existing crypto can use a
+                        centralized exchange such as{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
@@ -228,7 +218,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         >
                             Ramp
                         </a>
-                        , to purchase their DAI. Click{" "}
+                        , to purchase their xDAI. Click{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
