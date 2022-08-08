@@ -66,13 +66,12 @@ export const SendCard = () => {
     ) => {
         if (newAmount !== null) {
             setAmount(newAmount);
-            const newTweetText = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nhttps://gnosischain.com/get-xdai`;
+            const newTweetText = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nhttps://gnosisfaucet.com`;
             setTweetText(newTweetText);
         }
     };
 
     const onVerifyCaptcha = (token: string) => {
-        console.log(token);
         setCaptchaVerified(true);
     };
 
@@ -95,14 +94,12 @@ export const SendCard = () => {
                         method: "GET",
                     });
 
-                    console.log(response.data.data.url);
-
                     const { url } = response.data.data;
                     //Oauth Step 2
                     setShowLoading(false);
                     window.open(url, "_self");
                 } catch (error) {
-                    console.error(error);
+                    // we can't console.log...need to find another way
                 }
             } else {
                 const url = `${serverUrl}/request-token`;
@@ -225,7 +222,7 @@ export const SendCard = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <ToggleButtonGroup
-                                className="send-card__element"
+                                className="send-card__element send-card__toggle-group"
                                 value={amount}
                                 exclusive
                                 onChange={handleAmountChange}
