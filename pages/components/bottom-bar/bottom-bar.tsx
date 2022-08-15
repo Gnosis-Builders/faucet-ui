@@ -3,7 +3,6 @@ import {
     Toolbar,
     Typography,
 } from "@mui/material";
-import "./bottom-bar.scss";
 
 export const BottomBar = () => {
     return (

@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import "./need-xdai.scss";
 
 type NeedxDAIProps = {
     openGetMoreFaq: () => void;

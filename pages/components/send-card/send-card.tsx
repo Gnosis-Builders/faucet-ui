@@ -15,10 +15,9 @@ import { Container } from "@mui/system";
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { higherAmount, lowerAmount } from "../../contants";
 import Loading from "../loading";
-import "./send-card.scss";
 import useClearParams from "use-clear-params";
+import { higherAmount, lowerAmount } from "../../../constants";
 
 export const SendCard = () => {
     const [network, setNetwork] = useState<string>("Gnosis Chain");
@@ -34,19 +33,19 @@ export const SendCard = () => {
     const serverUrl = process.env.REACT_APP_BACKEND_URL as string;
     const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
 
-    const clearParams = useClearParams();
+    // const clearParams = useClearParams();
 
     useEffect(() => {
         (async () => {
-            if (clearParams !== null) {
-                const user = clearParams.get("user");
-                const walletAddress = clearParams.get("walletAddress");
+            // if (clearParams !== null) {
+            //     const user = clearParams.get("user");
+            //     const walletAddress = clearParams.get("walletAddress");
 
-                if (user !== undefined && walletAddress !== undefined) {
-                    setWalletAddress(walletAddress as string);
-                    sendRequest(user as string, walletAddress as string);
-                }
-            }
+            //     if (user !== undefined && walletAddress !== undefined) {
+            //         setWalletAddress(walletAddress as string);
+            //         sendRequest(user as string, walletAddress as string);
+            //     }
+            // }
         })();
     }, []);
 
@@ -71,7 +70,8 @@ export const SendCard = () => {
         }
     };
 
-    const onVerifyCaptcha = (token: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const onVerifyCaptcha = (_token: string) => {
         setCaptchaVerified(true);
     };
 

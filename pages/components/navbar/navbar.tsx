@@ -5,9 +5,8 @@ import {
     Typography,
     useMediaQuery,
 } from "@mui/material";
-import "./navbar.scss";
-import logo from "./logo.png";
 import classNames from "classnames";
+import logo from "../../../public/logo.png";
 
 export const NavBar = () => {
     const isTabletOrMobile = useMediaQuery("(max-width:960px)");
@@ -17,7 +16,7 @@ export const NavBar = () => {
             <AppBar color="transparent" position="static">
                 <Toolbar>
                     <img
-                        src={logo}
+                        src={logo.src}
                         alt="Gnosis Chain!"
                         className={classNames({
                             navbar__logo: !isTabletOrMobile,

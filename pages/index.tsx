@@ -6,7 +6,6 @@ import NeedxDAI from "./components/need-xdai/need-xdai";
 import { SendCard } from "./components/send-card/send-card";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./App.scss";
 import { BottomBar } from "./components/bottom-bar/bottom-bar";
 import { useState } from "react";
 

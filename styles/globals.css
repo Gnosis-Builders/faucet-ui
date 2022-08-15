@@ -1,0 +1,56 @@
+html,
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    background-color: #f0ebde;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: dark;
+    }
+    body {
+        color: white;
+        background: black;
+    }
+}
+
+@font-face {
+    font-family: "GT-Planar";
+    src: url("./fonts/GT-Planar/GT-Planar-Bold.woff2") format("woff2"),
+        url("./fonts/GT-Planar/GT-Planar-Bold.woff") format("woff"),
+        url("./fonts/GT-Planar/GT-Planar-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "GT-Planar-Regular";
+    src: url("./fonts/GT-Planar/GT-Planar-Regular.woff2") format("woff2"),
+        url("./fonts/GT-Planar/GT-Planar-Regular.woff") format("woff"),
+        url("./fonts/GT-Planar/GT-Planar-Regular.ttf") format("truetype");
+}
+
+a {
+    color: brown;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+a:hover {
+    color: burlywood;
+}
+
+#__next {
+  color: black !important;
+  background-color: #f0ebde !important; 
+}
