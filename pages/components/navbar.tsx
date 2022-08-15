@@ -6,7 +6,7 @@ import {
     useMediaQuery,
 } from "@mui/material";
 import classNames from "classnames";
-import logo from "../../../public/logo.png";
+import logo from "../../public/logo.png";
 
 export const NavBar = () => {
     const isTabletOrMobile = useMediaQuery("(max-width:960px)");

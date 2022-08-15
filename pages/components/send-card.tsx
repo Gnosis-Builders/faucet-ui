@@ -15,9 +15,9 @@ import { Container } from "@mui/system";
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Loading from "../loading";
+import Loading from "./loading";
 import useClearParams from "use-clear-params";
-import { higherAmount, lowerAmount } from "../../../constants";
+import { higherAmount, lowerAmount } from "../../constants";
 
 export const SendCard = () => {
     const [network, setNetwork] = useState<string>("Gnosis Chain");

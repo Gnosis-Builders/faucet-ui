@@ -1,12 +1,12 @@
 import { Container } from "@mui/system";
 import { Fragment } from "react";
-import FAQ from "./components/faq/faq";
-import { NavBar } from "./components/navbar/navbar";
-import NeedxDAI from "./components/need-xdai/need-xdai";
-import { SendCard } from "./components/send-card/send-card";
+import FAQ from "./components/faq";
+import { NavBar } from "./components/navbar";
+import NeedxDAI from "./components/need-xdai";
+import { SendCard } from "./components/send-card";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BottomBar } from "./components/bottom-bar/bottom-bar";
+import { BottomBar } from "./components/bottom-bar";
 import { useState } from "react";
 
 function App() {
