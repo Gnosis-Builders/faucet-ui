@@ -246,7 +246,7 @@ export const SendCard = () => {
                                     <a
                                         target="_blank"
                                         rel="noreferrer noopener"
-                                        href={`${process.env.REACT_APP_EXPLORER_URL}/${hash}`}
+                                        href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}/${hash}`}
                                     >
                                         View Transaction
                                     </a>

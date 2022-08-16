@@ -1,9 +1,47 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Response, ResponseUtils } from "../common";
+import { decrypt, Response, ResponseUtils } from "../common";
+import { Network } from "../dtos";
 import { DAO } from "../entities/dao";
 import { UserDAO } from "../entities/user.dao";
+import { ethers, Wallet } from "ethers";
+
+const providers: Record<Network, string> = {
+    "Gnosis Chain": "https://rpc.ankr.com/gnosis",
+    "Chiado Testnet": "",
+    "Optimism L2": "",
+};
+
+const sendDAI = (
+    receiverAddress: string,
+    amount: string,
+    chain: Network
+): Promise<string> => {
+    const provider = new ethers.providers.JsonRpcProvider(providers[chain]);
+
+    return new Promise(async (resolve, reject) => {
+        try {
+            const wallet = new Wallet(
+                decrypt(process.env.PRIVATE_KEY as string),
+                provider
+            );
+            const tx = {
+                to: receiverAddress,
+                value: ethers.utils.parseEther(amount),
+            };
+
+            const txObj = await wallet.sendTransaction(tx);
+            resolve(txObj.hash);
+        } catch (err) {
+            reject(err);
+        }
+    });
+};
 
 export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+    const {
+        body: { walletAddress, network, userId, tweetText, tweetUrl },
+    } = req;
+
     let ipAddress = req.headers["x-forwarded-for"];
     if (ipAddress !== undefined) {
         if (typeof ipAddress === "string") {
@@ -20,17 +58,40 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
 
     try {
         const crt = await userDAO.canRequestToken(
-            {
-                network: "Chiado Testnet",
-                tweetText: "Hello World",
-                walletAddress: "wallet address 1",
-                userId: "1",
-            },
+            network,
+            walletAddress,
             ipAddress as string
         );
-        res.status(200).json(ResponseUtils.getSuccessResponse("", ""));
+
+        let amount = process.env.LOWER_AMOUNT;
+
+        if (crt) {
+            try {
+                if (tweetUrl !== undefined && tweetUrl.length > 0) {
+                    // validate the tweet and get the walletAddress from it
+                    amount = process.env.HIGHER_AMOUNT;
+                }
+            } catch (err) {
+                res.status(500).json(ResponseUtils.getErrorResponse(err, ""));
+            }
+
+            switch (network) {
+                case "Gnosis Chain":
+                    const hash = await sendDAI(
+                        walletAddress,
+                        amount as string,
+                        network
+                    );
+                    res.status(200).json(
+                        ResponseUtils.getSuccessResponse(hash, "")
+                    );
+                    return;
+                default:
+                    throw new Error("Unknown chain provided");
+            }
+        }
     } catch (err) {
-        console.log("crt: ", err);
         res.status(500).json(ResponseUtils.getErrorResponse(err, ""));
-    }    
+        return;
+    }
 };

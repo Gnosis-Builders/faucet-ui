@@ -1,6 +1,5 @@
-import { RequestToken } from "../dtos";
+import { Network } from "../dtos";
 import { DAO } from "./dao";
-import { UserEntity } from "./user";
 
 export class UserDAO {
     dao: DAO;
@@ -13,15 +12,17 @@ export class UserDAO {
         this.dao.run(query, []);
     }
 
-    async canRequestToken(request: RequestToken, ipAddress: string) {
+    async canRequestToken(
+        network: Network,
+        walletAddress: string,
+        ipAddress: string
+    ) {
         return new Promise(async (resolve, reject) => {
             let query = `SELECT * FROM user where ipAddress = ? OR upper(lastWalletAddress) = ?`;
             const row = await this.dao.get(query, [
                 ipAddress,
-                request.walletAddress.toUpperCase(),
+                walletAddress.toUpperCase(),
             ]);
-
-            console.log(row);
 
             if (row) {
                 const expiry = Number(row["expiry"]);
@@ -41,18 +42,20 @@ export class UserDAO {
                     "INSERT INTO user (expiry, ipAddress, networks, walletAddresses, lastWalletAddress, twitterToken, twitterSecret) VALUES (?, ?, ?, ?, ?, '', '')";
             }
 
-            const expiry = new Date().getTime() + 86400000;
+            const expiry =
+                new Date().getTime() + +(process.env.WAIT_TIME_MILLI as string);
+
+            console.log("Running Query: ", query);
 
             await this.dao.run(query, [
                 expiry.toString(),
                 ipAddress,
-                row?.networks
-                    ? row.networks + request.network
-                    : request.network,
+                row?.networks ? `${row.networks}, ${network}` : network,
                 row?.walletAddresses
-                    ? row.walletAddresses + request.walletAddress
-                    : request.walletAddress,
-                request.walletAddress,
+                    ? `${row.walletAddresses}, ${walletAddress}`
+                    : walletAddress,
+                walletAddress,
+                row?.id ? row.id : null,
             ]);
 
             resolve(true);
