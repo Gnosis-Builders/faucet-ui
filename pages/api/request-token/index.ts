@@ -71,7 +71,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
                     // validate the tweet and get the walletAddress from it
                     amount = process.env.HIGHER_AMOUNT;
                 }
-            } catch (err) {
+            } catch (err: any) {
                 res.status(500).json(ResponseUtils.getErrorResponse(err, ""));
             }
 
@@ -90,8 +90,8 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
                     throw new Error("Unknown chain provided");
             }
         }
-    } catch (err) {
-        res.status(500).json(ResponseUtils.getErrorResponse(err, ""));
+    } catch (err: any) {
+        res.status(500).json(ResponseUtils.getErrorResponse(err.toString(), ""));
         return;
     }
 };

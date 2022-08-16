@@ -14,7 +14,7 @@ export const decrypt = (encryptedText: string) => {
 };
 
 export class ResponseUtils {
-  static getSuccessResponse(data: any, message: string): Response {
+  static getSuccessResponse(data: string, message: string): Response {
     const r: Response = {
       status: 'success',
       message: message,
@@ -24,7 +24,7 @@ export class ResponseUtils {
     return r;
   }
 
-  static getErrorResponse(data: any, message: string): Response {
+  static getErrorResponse(data: string, message: string): Response {
     const r: Response = {
       status: 'error',
       message: message,
@@ -38,5 +38,5 @@ export class ResponseUtils {
 export interface Response {
   status: 'success' | 'error';
   message: string;
-  data: any;
+  data: string;
 }

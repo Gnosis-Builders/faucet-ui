@@ -1,4 +1,5 @@
 import { Database } from "sqlite3";
+import { UserEntity } from "./user";
 
 export class DAO {
     db: Database;
@@ -26,7 +27,7 @@ export class DAO {
         });
     }
 
-    get(query: string, params: Array<string>): Promise<any> {
+    get(query: string, params: Array<string>): Promise<UserEntity> {
         return new Promise((resolve, reject) => {
             this.db.get(query, params, (err, rows) => {
                 if (err) {
