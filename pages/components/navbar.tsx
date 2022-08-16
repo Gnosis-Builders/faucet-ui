@@ -8,7 +8,7 @@ import {
 import classNames from "classnames";
 import logo from "../../public/logo.png";
 
-export const NavBar = () => {
+const NavBar = () => {
     const isTabletOrMobile = useMediaQuery("(max-width:960px)");
 
     return (
@@ -42,3 +42,5 @@ export const NavBar = () => {
         </div>
     );
 };
+
+export default NavBar;

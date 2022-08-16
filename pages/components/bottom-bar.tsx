@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 
-export const BottomBar = () => {
+const BottomBar = () => {
     return (
         <div className="bottombar__root">
             <AppBar color="transparent" position="static">
@@ -63,3 +63,5 @@ export const BottomBar = () => {
         </div>
     );
 };
+
+export default BottomBar;

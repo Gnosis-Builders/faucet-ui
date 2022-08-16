@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import Loading from "./loading";
 import { higherAmount, lowerAmount } from "../../constants";
 
-export const SendCard = () => {
+const SendCard = () => {
     const [network, setNetwork] = useState<string>("Gnosis Chain");
     const [captchaVerified, setCaptchaVerified] = useState(false);
     const [hash, setHash] = useState<string>("");
@@ -314,3 +314,5 @@ export const SendCard = () => {
         </Container>
     );
 };
+
+export default SendCard;
