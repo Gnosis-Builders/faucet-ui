@@ -30,8 +30,8 @@ export const SendCard = () => {
 
     const networks = ["Gnosis Chain"];
 
-    const serverUrl = process.env.REACT_APP_BACKEND_URL as string;
-    const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
+    const serverUrl = process.env.NEXT_PUBLIC_BACKEND_URL as string;
+    const siteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string;
 
     // const clearParams = useClearParams();
 
@@ -132,7 +132,8 @@ export const SendCard = () => {
                         })
                         .catch((error) => {
                             setShowLoading(false);
-                            toast.error(error.response.data.data.error);
+                            console.log(error.response.data.data);
+                            toast.error(error.response.data.data);
                         });
                 } catch (error) {
                     setShowLoading(false);
