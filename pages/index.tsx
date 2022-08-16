@@ -9,8 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import BottomBar from "./components/bottom-bar";
 import { useState } from "react";
 
-function App() {
-    // eslint-disable-next-line react/display-name
+// eslint-disable react/display-name
+function App() {    
     const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(
         () => () => null
     );
