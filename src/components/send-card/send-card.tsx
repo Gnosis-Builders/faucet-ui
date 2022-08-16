@@ -71,7 +71,8 @@ export const SendCard = () => {
         }
     };
 
-    const onVerifyCaptcha = (token: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const onVerifyCaptcha = (_token: string) => {
         setCaptchaVerified(true);
     };
 

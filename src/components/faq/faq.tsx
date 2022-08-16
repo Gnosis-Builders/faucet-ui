@@ -10,7 +10,7 @@ import "./faq.scss";
 import { useState, useEffect, useRef } from "react";
 
 type FAQProps = {
-  setOpenGetMoreFaq: (x: () => void) => void;
+    setOpenGetMoreFaq: (x: () => void) => void;
 };
 
 const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
@@ -25,12 +25,16 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
     const getMoreFaqRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-      setOpenGetMoreFaq(() => () => {
-        setExpanded("hcigmx");
-        if (getMoreFaqRef.current !== null) {
-          getMoreFaqRef.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-        }
-      });
+        setOpenGetMoreFaq(() => () => {
+            setExpanded("hcigmx");
+            if (getMoreFaqRef.current !== null) {
+                getMoreFaqRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center",
+                });
+            }
+        });
     }, []);
 
     return (
@@ -148,10 +152,11 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain 0.001 xDAI from the Gnosis Chain
-                        faucet must have solved the captcha verification. Users
-                        who wish to obtain 0.01 xDAI must complete the previous
-                        steps in addition to sending a verification Tweet.
+                        Users who wish to obtain 0.001 xDAI from the Gnosis
+                        Chain faucet must have solved the captcha verification.
+                        Users who wish to obtain 0.01 xDAI must complete the
+                        previous steps in addition to sending a verification
+                        Tweet.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -182,10 +187,10 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        If you already own DAI on Ethereum or another bridge
-                        compatible EVM compatible chain, you will be able to
-                        bridge your DAI to Gnosis Chain and convert it to xDAI.
-                        To do so, we recommend using either{" "}
+                        If you already own DAI on Ethereum or another EVM
+                        compatible chain, you will be able to bridge your DAI to
+                        Gnosis Chain and convert it to xDAI. To do so, we
+                        recommend using either{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
