@@ -25,9 +25,9 @@
       ]
   },
   "ignorePatterns": [
-      "src/**/*.test.ts",
-      "src/fonts",
-      "src/frontend/generated/*",
+      "pages/**/*.test.ts",
+      "pages/fonts",
+      "pages/frontend/generated/*",
       "dist/*",
       "build/*"
   ]

@@ -16,7 +16,6 @@ import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "./loading";
-import useClearParams from "use-clear-params";
 import { higherAmount, lowerAmount } from "../../constants";
 
 export const SendCard = () => {
@@ -40,7 +39,6 @@ export const SendCard = () => {
             // if (clearParams !== null) {
             //     const user = clearParams.get("user");
             //     const walletAddress = clearParams.get("walletAddress");
-
             //     if (user !== undefined && walletAddress !== undefined) {
             //         setWalletAddress(walletAddress as string);
             //         sendRequest(user as string, walletAddress as string);
@@ -132,7 +130,6 @@ export const SendCard = () => {
                         })
                         .catch((error) => {
                             setShowLoading(false);
-                            console.log(error.response.data.data);
                             toast.error(error.response.data.data);
                         });
                 } catch (error) {

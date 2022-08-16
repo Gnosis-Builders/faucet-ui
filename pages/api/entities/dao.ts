@@ -6,10 +6,9 @@ export class DAO {
     constructor(path: string) {
         this.db = new Database(path, (err) => {
             if (err) {
-                console.log("Could not connect to database", err);
-            } else {
-                console.log("Connected to database");
+                // console.error(err.message);
             }
+            // console.log('Connected to the database.');
         });
     }
 
@@ -17,8 +16,6 @@ export class DAO {
         return new Promise((resolve, reject) => {
             this.db.run(query, params, (err) => {
                 if (err) {
-                    console.log("Error running sql " + query);
-                    console.log(err);
                     reject(err);
                 } else {
                     resolve('success');
@@ -31,8 +28,6 @@ export class DAO {
         return new Promise((resolve, reject) => {
             this.db.get(query, params, (err, rows) => {
                 if (err) {
-                    console.log("Error running sql " + query);
-                    console.log(err);
                     reject(err);
                 } else {
                     resolve(rows);

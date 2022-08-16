@@ -6,10 +6,10 @@
     "preinstall": "npx only-allow yarn",
     "linter": "yarn lint:check && yarn format:check",
     "linter:fix": "yarn lint:fix && yarn format:fix",
-    "lint:check": "npx eslint src/ --ext .js,.jsx,.ts,.tsx",
-    "format:check": "npx prettier --check src/**/*.ts*",
-    "format:fix": "npx prettier --ignore-path .gitignore --check --write src/**/*.ts*",
-    "lint:fix": "npx eslint src/ --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
+    "lint:check": "npx eslint pages/ --ext .js,.jsx,.ts,.tsx",
+    "format:check": "npx prettier --check pages/**/*.ts*",
+    "format:fix": "npx prettier --ignore-path .gitignore --check --write pages/**/*.ts*",
+    "lint:fix": "npx eslint pages/ --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -42,7 +42,6 @@
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5",
-    "use-clear-params": "^0.1.0"
+    "eslint-config-next": "12.2.5"
   }
 }

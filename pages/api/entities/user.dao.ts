@@ -17,48 +17,43 @@ export class UserDAO {
         walletAddress: string,
         ipAddress: string
     ) {
-        return new Promise(async (resolve, reject) => {
-            let query = `SELECT * FROM user where ipAddress = ? OR upper(lastWalletAddress) = ?`;
-            const row = await this.dao.get(query, [
-                ipAddress,
-                walletAddress.toUpperCase(),
-            ]);
+        let query = `SELECT * FROM user where ipAddress = ? OR upper(lastWalletAddress) = ?`;
+        const row = await this.dao.get(query, [
+            ipAddress,
+            walletAddress.toUpperCase(),
+        ]);
 
-            if (row) {
-                const expiry = Number(row["expiry"]);
-                const now = new Date().getTime();
+        if (row !== null && row !== undefined) {
+            const expiry = Number(row["expiry"]);
+            const now = new Date().getTime();
 
-                if (expiry > now) {
-                    reject(
-                        "You can request again by: " +
-                            new Date(expiry).toString()
-                    );
-                    return false;
-                }
-                query =
-                    "UPDATE user set expiry = ?, ipAddress = ?, networks = ?, walletAddresses = ?, lastWalletAddress = ? WHERE id = ?";
-            } else {
-                query =
-                    "INSERT INTO user (expiry, ipAddress, networks, walletAddresses, lastWalletAddress, twitterToken, twitterSecret) VALUES (?, ?, ?, ?, ?, '', '')";
+            if (expiry > now) {
+                throw Error(
+                    "You have already requested tokens. You can request again by: " +
+                        new Date(expiry).toString()
+                );
             }
+            query =
+                "UPDATE user set expiry = ?, ipAddress = ?, networks = ?, walletAddresses = ?, lastWalletAddress = ? WHERE id = ?";
+        } else {
+            query =
+                "INSERT INTO user (expiry, ipAddress, networks, walletAddresses, lastWalletAddress, twitterToken, twitterSecret) VALUES (?, ?, ?, ?, ?, '', '')";
+        }
 
-            const expiry =
-                new Date().getTime() + +(process.env.WAIT_TIME_MILLI as string);
+        const expiry =
+            new Date().getTime() + +(process.env.WAIT_TIME_MILLI as string);
 
-            console.log("Running Query: ", query);
+        await this.dao.run(query, [
+            expiry.toString(),
+            ipAddress,
+            row.networks.length > 0 ? `${row.networks}, ${network}` : network,
+            row.walletAddresses.length > 0
+                ? `${row.walletAddresses}, ${walletAddress}`
+                : walletAddress,
+            walletAddress,
+            (row.id as number).toString(),
+        ]);
 
-            await this.dao.run(query, [
-                expiry.toString(),
-                ipAddress,
-                row?.networks ? `${row.networks}, ${network}` : network,
-                row?.walletAddresses
-                    ? `${row.walletAddresses}, ${walletAddress}`
-                    : walletAddress,
-                walletAddress,
-                row?.id ? row.id : null,
-            ]);
-
-            resolve(true);
-        });
+        return true;
     }
 }

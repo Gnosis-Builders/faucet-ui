@@ -11,33 +11,27 @@ const providers: Record<Network, string> = {
     "Optimism L2": "",
 };
 
-const sendDAI = (
+const sendDAI = async (
     receiverAddress: string,
     amount: string,
     chain: Network
 ): Promise<string> => {
     const provider = new ethers.providers.JsonRpcProvider(providers[chain]);
 
-    return new Promise(async (resolve, reject) => {
-        try {
-            const wallet = new Wallet(
-                decrypt(process.env.PRIVATE_KEY as string),
-                provider
-            );
-            const tx = {
-                to: receiverAddress,
-                value: ethers.utils.parseEther(amount),
-            };
+    const wallet = new Wallet(
+        decrypt(process.env.PRIVATE_KEY as string),
+        provider
+    );
+    const tx = {
+        to: receiverAddress,
+        value: ethers.utils.parseEther(amount),
+    };
 
-            const txObj = await wallet.sendTransaction(tx);
-            resolve(txObj.hash);
-        } catch (err) {
-            reject(err);
-        }
-    });
+    const txObj = await wallet.sendTransaction(tx);
+    return txObj.hash;
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+const handleRequest = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     const {
         body: { walletAddress, network, userId, tweetText, tweetUrl },
     } = req;
@@ -75,23 +69,23 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
                 res.status(500).json(ResponseUtils.getErrorResponse(err, ""));
             }
 
-            switch (network) {
-                case "Gnosis Chain":
-                    const hash = await sendDAI(
-                        walletAddress,
-                        amount as string,
-                        network
-                    );
-                    res.status(200).json(
-                        ResponseUtils.getSuccessResponse(hash, "")
-                    );
-                    return;
-                default:
-                    throw new Error("Unknown chain provided");
+            if (network === "Gnosis Chain") {
+                const hash = await sendDAI(
+                    walletAddress,
+                    amount as string,
+                    network
+                );
+                res.status(200).json(
+                    ResponseUtils.getSuccessResponse(hash, "")
+                );
             }
         }
     } catch (err: any) {
-        res.status(500).json(ResponseUtils.getErrorResponse(err.toString(), ""));
+        res.status(500).json(
+            ResponseUtils.getErrorResponse(err.toString(), "")
+        );
         return;
     }
 };
+
+export default handleRequest;
