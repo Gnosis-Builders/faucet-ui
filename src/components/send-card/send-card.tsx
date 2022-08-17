@@ -13,45 +13,41 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Container } from "@mui/system";
 import axios from "axios";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { higherAmount, lowerAmount } from "../../contants";
 import Loading from "../loading";
 import "./send-card.scss";
-import useClearParams from "use-clear-params";
 
 export const SendCard = () => {
+    const gnosisExplorer = process.env.REACT_APP_EXPLORER_URL as string;
+    const chiadoExplorer = process.env.REACT_APP_CHIADO_EXPLORE_URL as string;
+
     const [network, setNetwork] = useState<string>("Gnosis Chain");
     const [captchaVerified, setCaptchaVerified] = useState(false);
     const [hash, setHash] = useState<string>("");
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
+    const [tweetUrl, setTweetUrl] = useState<string>("");
     const [amount, setAmount] = useState<string>(lowerAmount.toString());
+    const [randomAmount, setRandomAmount] = useState<number>(0);
     const [tweetText, setTweetText] = useState<string>("");
+    const [explorerUrl, setExplorerUrl] = useState<string>(gnosisExplorer);
 
-    const networks = ["Gnosis Chain"];
+    const networks = ["Gnosis Chain", "Chiado Testnet"];
 
     const serverUrl = process.env.REACT_APP_BACKEND_URL as string;
     const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
 
-    const clearParams = useClearParams();
-
-    useEffect(() => {
-        (async () => {
-            if (clearParams !== null) {
-                const user = clearParams.get("user");
-                const walletAddress = clearParams.get("walletAddress");
-
-                if (user !== undefined && walletAddress !== undefined) {
-                    setWalletAddress(walletAddress as string);
-                    sendRequest(user as string, walletAddress as string);
-                }
-            }
-        })();
-    }, []);
-
     const handleNetworkChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNetwork(event.target.value);
+        if (event.target.value === "Gnosis Chain") {
+            setCaptchaVerified(false);
+            setExplorerUrl(gnosisExplorer);
+        } else {
+            setCaptchaVerified(true);
+            setExplorerUrl(chiadoExplorer);
+        }
     };
 
     const handleWalletAddressChange = (
@@ -60,14 +56,16 @@ export const SendCard = () => {
         setWalletAddress(event.target.value);
     };
 
+    const handleTweetUrlChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setTweetUrl(event.target.value);
+    };
+
     const handleAmountChange = (
         event: React.MouseEvent<HTMLElement>,
         newAmount: string
     ) => {
         if (newAmount !== null) {
             setAmount(newAmount);
-            const newTweetText = `Requesting ${newAmount}xDAI funds from the Official xDAI Faucet on Gnosis Chain.\nhttps://gnosisfaucet.com`;
-            setTweetText(newTweetText);
         }
     };
 
@@ -76,76 +74,92 @@ export const SendCard = () => {
         setCaptchaVerified(true);
     };
 
-    const paste = () => {
+    const paste = (setFunction: (text: string) => void) => {
         navigator.clipboard.readText().then((clipboard) => {
-            setWalletAddress(clipboard);
+            setFunction(clipboard);
         });
     };
 
-    const sendRequest = async (userId = "", _walletAddress = "") => {
-        if (_walletAddress.length <= 0 && walletAddress.length <= 0) {
-            toast.error("Please enter wallet address");
-        } else {
-            if (amount === higherAmount.toString() && userId.length <= 0) {
-                try {
-                    //OAuth Step 1
-                    setShowLoading(true);
-                    const response = await axios({
-                        url: `${serverUrl}/twitter/v1/login?wallet=${walletAddress}`,
-                        method: "GET",
-                    });
+    const sendRequest = async () => {
+        let _amount = amount;
+        if (network === "Gnosis Chain") {
+            if (amount === higherAmount.toString() && tweetUrl.length <= 0) {
+                toast.error("Please provide a tweet URL.");
+                return;
+            }
 
-                    const { url } = response.data.data;
-                    //Oauth Step 2
-                    setShowLoading(false);
-                    window.open(url, "_self");
-                } catch (error) {
-                    // we can't console.log...need to find another way
+            if (amount === higherAmount.toString() && tweetUrl.length > 0) {
+                if (!tweetUrl.includes("https://twitter.com/")) {
+                    toast.error("Please provide a valid tweet URL.");
+                    return;
+                } else {
+                    _amount = (+amount + randomAmount).toFixed(5);
                 }
-            } else {
-                const url = `${serverUrl}/request-token`;
-                try {
-                    setShowLoading(true);
-                    const req = {
-                        walletAddress:
-                            _walletAddress.length > 0
-                                ? _walletAddress
-                                : walletAddress,
-                        network,
-                        userId: userId.length > 0 ? userId : undefined,
-                        tweetText,
-                    };
-                    axios
-                        .post(url, req)
-                        .then((response) => {
-                            setShowLoading(false);
-                            if (response.data.status === "success") {
-                                setHash(response.data.data);
-                                setWalletAddress("");
-                                setCaptchaVerified(false);
-                                toast(
-                                    "xDAI sent to your wallet address. Hash: " +
-                                        response.data.data
-                                );
-                            } else {
-                                toast("Error sending xDAI, please try again");
-                            }
-                        })
-                        .catch((error) => {
-                            setShowLoading(false);
-                            toast.error(error.response.data.data.error);
-                        });
-                } catch (error) {
+            }
+        }
+
+        if (walletAddress.length <= 0) {
+            toast.error("Please provide a wallet address.");
+            return;
+        }
+
+        const url = `${serverUrl}/request-token`;
+        try {
+            setShowLoading(true);
+            const req = {
+                walletAddress,
+                network,
+                tweetUrl,
+                amount: _amount,
+            };
+
+            axios
+                .post(url, req)
+                .then((response) => {
                     setShowLoading(false);
-                    if (error instanceof Error) {
-                        toast.error(error.message);
+                    if (response.data.status === "success") {
+                        setHash(response.data.data);
+                        setWalletAddress("");
+                        setTweetUrl("");
+                        setAmount(lowerAmount.toString());
+                        setCaptchaVerified(false);
+                        toast(
+                            "xDAI sent to your wallet address. Hash: " +
+                                response.data.data
+                        );
+                    } else {
+                        toast("Error sending xDAI, please try again");
                     }
-                }
+                })
+                .catch((error) => {
+                    setShowLoading(false);
+                    toast.error(error.response.data.data.error);
+                });
+        } catch (error) {
+            setShowLoading(false);
+            if (error instanceof Error) {
+                toast.error(error.message);
             }
         }
     };
 
     const isTabletOrMobile = useMediaQuery("(max-width:960px)");
+
+    const tweetPlaceholder = process.env.REACT_APP_TWEET_TEXT as string;
+
+    const getTweetText = (): string => {
+        if (tweetText.length > 0) {
+            return tweetText;
+        } else {
+            const _randomAmount = Math.random() / 1000;
+            setRandomAmount(_randomAmount);
+            const amount = (+higherAmount + _randomAmount).toFixed(5);
+            const _tweetText = tweetPlaceholder.replace("AMOUNT", amount);
+            setTweetText(_tweetText);
+            return _tweetText;
+        }
+    };
+
     return (
         <Container maxWidth="sm">
             <Card>
@@ -199,7 +213,9 @@ export const SendCard = () => {
                                 InputProps={{
                                     endAdornment: (
                                         <Button
-                                            onClick={paste}
+                                            onClick={() =>
+                                                paste(setWalletAddress)
+                                            }
                                             className="send-card__text-button"
                                             variant="outlined"
                                             sx={{ fontWeight: "bold" }}
@@ -210,68 +226,7 @@ export const SendCard = () => {
                                 }}
                             />
                         </Grid>
-
-                        <Grid item xs={12}>
-                            <Typography
-                                color="white"
-                                variant="body1"
-                                fontFamily="GT-Planar"
-                                fontSize="20px"
-                            >
-                                Request Amount
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ToggleButtonGroup
-                                className="send-card__element send-card__toggle-group"
-                                value={amount}
-                                exclusive
-                                onChange={handleAmountChange}
-                            >
-                                <ToggleButton value={lowerAmount.toString()}>
-                                    {lowerAmount} xDAI
-                                </ToggleButton>
-                                <ToggleButton value={higherAmount.toString()}>
-                                    {higherAmount} xDAI
-                                </ToggleButton>
-                            </ToggleButtonGroup>
-                        </Grid>
-                        {hash !== undefined && hash.length > 0 && (
-                            <Grid item xs={12}>
-                                <Typography
-                                    color="white"
-                                    variant="body1"
-                                    fontWeight={"bold"}
-                                >
-                                    <a
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        href={`${process.env.REACT_APP_EXPLORER_URL}/${hash}`}
-                                    >
-                                        View Transaction
-                                    </a>
-                                </Typography>
-                            </Grid>
-                        )}
-                        <Grid item xs={12}>
-                            <Typography
-                                color="white"
-                                variant="body1"
-                                fontFamily="GT-Planar"
-                                fontSize="20px"
-                            >
-                                Verify
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <HCaptcha
-                                size={isTabletOrMobile ? "compact" : "normal"}
-                                sitekey={siteKey}
-                                onVerify={onVerifyCaptcha}
-                            />
-                        </Grid>
-
-                        {amount === higherAmount.toString() && (
+                        {network === "Gnosis Chain" && (
                             <>
                                 <Grid item xs={12}>
                                     <Typography
@@ -280,25 +235,135 @@ export const SendCard = () => {
                                         fontFamily="GT-Planar"
                                         fontSize="20px"
                                     >
-                                        Send A Tweet
+                                        Request Amount
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextField
-                                        className="send-card__element"
-                                        value={tweetText}
-                                        id="tweet-text"
-                                        name="tweet-text"
-                                        fullWidth
-                                        multiline
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
+                                    <ToggleButtonGroup
+                                        className="send-card__element send-card__toggle-group"
+                                        value={amount}
+                                        exclusive
+                                        onChange={handleAmountChange}
+                                    >
+                                        <ToggleButton
+                                            value={lowerAmount.toString()}
+                                        >
+                                            {lowerAmount} xDAI
+                                        </ToggleButton>
+                                        <ToggleButton
+                                            value={higherAmount.toString()}
+                                        >
+                                            {higherAmount} xDAI
+                                        </ToggleButton>
+                                    </ToggleButtonGroup>
+                                </Grid>
+                                {amount === higherAmount.toString() && (
+                                    <>
+                                        <Grid item xs={12}>
+                                            <Typography
+                                                color="white"
+                                                variant="body1"
+                                                fontFamily="GT-Planar"
+                                                fontSize="17px"
+                                            >
+                                                Post the below text in a tweet
+                                                and provide a link to the tweet
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                className="send-card__element"
+                                                value={getTweetText()}
+                                                id="tweet-text"
+                                                name="tweet-text"
+                                                fullWidth
+                                                multiline
+                                                InputProps={{
+                                                    readOnly: true,
+                                                }}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Typography
+                                                color="white"
+                                                variant="body1"
+                                                fontFamily="GT-Planar"
+                                                fontSize="20px"
+                                            >
+                                                Link to tweet
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                onChange={handleTweetUrlChange}
+                                                value={tweetUrl}
+                                                className="send-card__element"
+                                                id="wallet-address"
+                                                fullWidth
+                                                InputProps={{
+                                                    endAdornment: (
+                                                        <Button
+                                                            onClick={() =>
+                                                                paste(
+                                                                    setTweetUrl
+                                                                )
+                                                            }
+                                                            className="send-card__text-button"
+                                                            variant="outlined"
+                                                            sx={{
+                                                                fontWeight:
+                                                                    "bold",
+                                                            }}
+                                                        >
+                                                            Paste
+                                                        </Button>
+                                                    ),
+                                                }}
+                                            />
+                                        </Grid>
+                                    </>
+                                )}
+                                <Grid item xs={12}>
+                                    <Typography
+                                        color="white"
+                                        variant="body1"
+                                        fontFamily="GT-Planar"
+                                        fontSize="20px"
+                                    >
+                                        Verify
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <HCaptcha
+                                        size={
+                                            isTabletOrMobile
+                                                ? "compact"
+                                                : "normal"
+                                        }
+                                        sitekey={siteKey}
+                                        onVerify={onVerifyCaptcha}
                                     />
                                 </Grid>
                             </>
                         )}
-
+                        {hash !== undefined && hash.length > 0 && (
+                            <Grid item xs={12}>
+                                <Typography
+                                    color="white"
+                                    variant="body1"
+                                    fontWeight={"bold"}
+                                >
+                                    <a
+                                        style={{ color: "white" }}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        href={`${explorerUrl}/${hash}`}
+                                    >
+                                        View Transaction
+                                    </a>
+                                </Typography>
+                            </Grid>
+                        )}
                         <Grid item xs={12}>
                             <Button
                                 disabled={!captchaVerified}
