@@ -122,7 +122,7 @@ export const SendCard = () => {
                         setWalletAddress("");
                         setTweetUrl("");
                         setAmount(lowerAmount.toString());
-                        setCaptchaVerified(false);
+                        setCaptchaVerified(network === 'Chiado Testnet' ? true : false);
                         toast(
                             "xDAI sent to your wallet address. Hash: " +
                                 response.data.data
