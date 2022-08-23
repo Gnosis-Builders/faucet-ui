@@ -116,7 +116,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https://developers.gnosischain.com/for-users/get-xdai-tokens"
+                            href="https://docs.gnosischain.com/"
                         >
                             {" "}
                             Gnosis Chain documentation.
@@ -227,7 +227,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https://developers.gnosischain.com/for-users/get-xdai-tokens#how-to-get-xdai-stable-tokens"
+                            href="https://docs.gnosischain.com/"
                         >
                             here
                         </a>{" "}
