@@ -8,6 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Container } from "@mui/system";
 import "./faq.scss";
 import { useState, useEffect, useRef } from "react";
+import { useAnalyticsEventTracker } from "../../App";
 
 type FAQProps = {
     setOpenGetMoreFaq: (x: () => void) => void;
@@ -15,10 +16,12 @@ type FAQProps = {
 
 const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
     const [expanded, setExpanded] = useState<string | false>("panel1");
+    const eventTracker = useAnalyticsEventTracker("FAQ");
 
     const handleChange =
         (panel: string) =>
         (event: React.SyntheticEvent, newExpanded: boolean) => {
+            eventTracker(panel, newExpanded ? "Open" : "Close");
             setExpanded(newExpanded ? panel : false);
         };
 

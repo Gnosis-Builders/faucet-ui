@@ -1,15 +1,19 @@
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
+import { useAnalyticsEventTracker } from "../../App";
 import "./need-xdai.scss";
 
 type NeedxDAIProps = {
     openGetMoreFaq: () => void;
 };
 
+const eventTracker = useAnalyticsEventTracker("NeedxDAI");
+
 const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
     const handleGetMoreXDAI = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         openGetMoreFaq();
+        eventTracker("Need More xDAI", "here");
     };
 
     return (
