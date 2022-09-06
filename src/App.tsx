@@ -21,7 +21,7 @@ export const useAnalyticsEventTracker = (category: string) => {
 function App() {
     const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(() => () => null);
 
-    const trackingId = "G-BKZCZ5GDGF";
+    const trackingId = "UA-237444060-2";
 
     ReactGA.initialize(trackingId);
     ReactGA.pageview("gnosisfaucet.com");

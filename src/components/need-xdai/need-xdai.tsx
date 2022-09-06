@@ -7,9 +7,9 @@ type NeedxDAIProps = {
     openGetMoreFaq: () => void;
 };
 
-const eventTracker = useAnalyticsEventTracker("NeedxDAI");
-
 const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
+    const eventTracker = useAnalyticsEventTracker("NeedxDAI");
+    
     const handleGetMoreXDAI = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         openGetMoreFaq();
