@@ -43,9 +43,10 @@ export const SendCard = () => {
     const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
 
     const handleNetworkChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setNetwork(event.target.value);
-        eventTracker("Network Change", event.target.value);
-        if (event.target.value === "Gnosis Chain") {
+        const value = event.target.value;
+        setNetwork(value);
+        eventTracker("Network Change", value);
+        if (value === "Gnosis Chain") {
             setCaptchaVerified(false);
             setExplorerUrl(gnosisExplorer);
         } else {
