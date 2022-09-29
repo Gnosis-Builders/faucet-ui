@@ -43,7 +43,7 @@ export const BottomBar = () => {
                             target="_blank"
                             rel="noreferrer noopener"
                             className="bottombar__no-decoration"
-                            href="https://developers.gnosischain.com/"
+                            href="https://docs.gnosischain.com/"
                         >
                             Docs
                         </a>

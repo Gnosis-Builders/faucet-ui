@@ -15,6 +15,7 @@ import { Container } from "@mui/system";
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
+import { useAnalyticsEventTracker } from "../../App";
 import { higherAmount, lowerAmount } from "../../contants";
 import Loading from "../loading";
 import "./send-card.scss";
@@ -33,6 +34,8 @@ export const SendCard = () => {
     const [randomAmount, setRandomAmount] = useState<number>(0);
     const [tweetText, setTweetText] = useState<string>("");
     const [explorerUrl, setExplorerUrl] = useState<string>(gnosisExplorer);
+    
+    const eventTracker = useAnalyticsEventTracker("Send Card");
 
     const networks = ["Gnosis Chain", "Chiado Testnet"];
 
@@ -40,8 +43,10 @@ export const SendCard = () => {
     const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
 
     const handleNetworkChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setNetwork(event.target.value);
-        if (event.target.value === "Gnosis Chain") {
+        const value = event.target.value;
+        setNetwork(value);
+        eventTracker("Network Change", value);
+        if (value === "Gnosis Chain") {
             setCaptchaVerified(false);
             setExplorerUrl(gnosisExplorer);
         } else {
@@ -80,7 +85,7 @@ export const SendCard = () => {
         });
     };
 
-    const sendRequest = async () => {
+    const sendRequest = async () => {        
         let _amount = amount;
         if (network === "Gnosis Chain") {
             if (amount === higherAmount.toString() && tweetUrl.length <= 0) {
@@ -111,7 +116,7 @@ export const SendCard = () => {
                 network,
                 tweetUrl,
                 amount: _amount,
-            };
+            };            
 
             axios
                 .post(url, req)
@@ -135,6 +140,8 @@ export const SendCard = () => {
                     setShowLoading(false);
                     toast.error(error.response.data.data.error);
                 });
+                
+                eventTracker("Send Request", JSON.stringify(req));
         } catch (error) {
             setShowLoading(false);
             if (error instanceof Error) {

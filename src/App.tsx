@@ -9,9 +9,22 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { BottomBar } from "./components/bottom-bar/bottom-bar";
 import { useState } from "react";
+import ReactGA from "react-ga";
+
+export const useAnalyticsEventTracker = (category: string) => {
+    const eventTracker = (action: string, label: string) => {
+        ReactGA.event({category, action, label});
+      }
+      return eventTracker;
+}
 
 function App() {
     const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(() => () => null);
+
+    const trackingId = "UA-237444060-2";
+
+    ReactGA.initialize(trackingId);
+    ReactGA.pageview("gnosisfaucet.com");
 
     return (
         <Fragment>
