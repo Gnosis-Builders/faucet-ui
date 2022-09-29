@@ -168,7 +168,7 @@ export const SendCard = () => {
     };
 
     return (
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
             <Card>
                 <CardContent className="send-card__green-area">
                     <Grid container spacing={2}>

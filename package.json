@@ -22,6 +22,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-ga": "^3.3.1",
+        "react-responsive": "^9.0.0",
         "react-scripts": "5.0.1",
         "react-toastify": "^9.0.7",
         "sass": "^1.53.0",
@@ -38,8 +39,9 @@
         "lint:fix": "npx eslint src/ --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
         "start": "react-scripts start",
         "build": "yarn linter && react-scripts build",
+        "surge": "yarn build && cd build && npx surge --domain gb-faucet-ui.surge.sh",
         "deploy": "yarn build && scp -r build/* gnosisfaucet.com:/var/www/html/",
-        "test": "react-scripts test",        
+        "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {

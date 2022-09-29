@@ -17,7 +17,7 @@ const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
     };
 
     return (
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
             <Typography
                 variant="h3"
                 fontFamily="GT-Planar"

@@ -41,7 +41,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
     }, []);
 
     return (
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
             <Typography
                 fontFamily="GT-Planar"
                 fontSize="35px"
