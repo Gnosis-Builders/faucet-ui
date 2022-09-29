@@ -59,7 +59,7 @@ const Donate: React.FC = () => {
                                 </Button>
                             </Typography>
                         </MediaQuery>
-                        <MediaQuery maxDeviceWidth={956}>
+                        <MediaQuery maxDeviceWidth={959}>
                             <Typography fontFamily="GT-Planar" fontSize="22px">
                                 {elipsify()}
                             </Typography>
