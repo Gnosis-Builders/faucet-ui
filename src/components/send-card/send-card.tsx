@@ -16,7 +16,7 @@ import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { useAnalyticsEventTracker } from "../../App";
-import { higherAmount, lowerAmount } from "../../contants";
+import { higherAmount, lowerAmount } from "../../constants";
 import Loading from "../loading";
 import "./send-card.scss";
 

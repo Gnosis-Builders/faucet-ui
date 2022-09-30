@@ -75,7 +75,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        <span id="need-more">
+                        <span>
                             A crypto faucet is a tool that distributes small
                             amounts of tokens to perform transactions on a
                             blockchain network. The Gnosis Chain xDAI faucet
@@ -186,6 +186,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography
+                        id="need-more"
                         fontFamily="GT-Planar-Regular"
                         fontSize="16px"
                         align="justify"
@@ -236,6 +237,42 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         </a>{" "}
                         for more information on how to perform any of the above
                         listed activities.
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion
+                className="faq__accordion"
+                expanded={expanded === "hciacc"}
+                onChange={handleChange("hciacc")}
+            >
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel5a-content"
+                    id="panel5a-header"
+                >
+                    <Typography
+                        color="white"
+                        fontFamily="GT-Planar"
+                        fontSize="18px"
+                        fontWeight="bold"
+                    >
+                        Chiado Testnet Details
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography
+                        fontFamily="GT-Planar-Regular"
+                        fontSize="16px"
+                        align="justify"
+                    >
+                        <ul>
+                            <li>Network ID: 10200</li>
+                            <li>RPC: https://rpc.chiadochain.net</li>
+                            <li>
+                                Explorer: https://blockscout.chiadochain.net
+                            </li>
+                        </ul>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
