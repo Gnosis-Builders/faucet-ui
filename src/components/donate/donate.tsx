@@ -20,7 +20,7 @@ const Donate: React.FC = () => {
         });
     };
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="sm">
             <div className="donate__container" id="donate-container">
                 <div className="donate__content">
                     <div className="donate__content__title">
@@ -50,7 +50,7 @@ const Donate: React.FC = () => {
                     >
                         <MediaQuery minWidth={960}>
                             <Typography fontFamily="GT-Planar" fontSize="22px">
-                                {address}
+                                {elipsify()}
                                 <Button
                                     onClick={() => copyToClipboard()}
                                     className="donate__content__wallet-address-container__copy-button donate__content__wallet-address-container__copy-button-lg"
