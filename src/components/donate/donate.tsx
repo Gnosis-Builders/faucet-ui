@@ -4,21 +4,22 @@ import React from "react";
 import "./donate.scss";
 import MediaQuery from "react-responsive";
 import { toast } from "react-toastify";
+import { ADDRESS } from "../../constants";
 
 const Donate: React.FC = () => {
-    const address = "0x729F19e4C405758C93F59E5f098190cB2382d883";
     const elipsify = () => {
-        return `${address.slice(0, 6)}...${address.slice(
-            address.length - 6,
-            address.length
+        return `${ADDRESS.slice(0, 6)}...${ADDRESS.slice(
+            ADDRESS.length - 6,
+            ADDRESS.length
         )}`;
     };
 
     const copyToClipboard = async () => {
-        await navigator.clipboard.writeText(address).then((_value) => {
+        await navigator.clipboard.writeText(ADDRESS).then((_value) => {
             toast("Copied to clipboard!");
         });
     };
+    
     return (
         <Container maxWidth="sm">
             <div className="donate__container" id="donate-container">
