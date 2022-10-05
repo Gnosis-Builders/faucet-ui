@@ -38,7 +38,7 @@ export const SendCard = () => {
 
     const eventTracker = useAnalyticsEventTracker("Send Card");
 
-    const networks = ["Gnosis Chain", "Chiado Testnet", "Optimism"];
+    const networks = ["Gnosis Chain", "Chiado Testnet", "Optimism on Gnosis Chain"];
 
     const serverUrl = process.env.REACT_APP_BACKEND_URL as string;
     const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
@@ -53,7 +53,7 @@ export const SendCard = () => {
         } else if (value === "Chiado Testnet") {
             setCaptchaVerified(true);
             setExplorerUrl(chiadoExplorer);
-        } else if(value === "Optimism") {
+        } else if(value === "Optimism on Gnosis Chain") {
             setCaptchaVerified(false);
             setExplorerUrl(optimismExplorer);
         }
@@ -263,7 +263,7 @@ export const SendCard = () => {
                                 }}
                             />
                         </Grid>
-                        {network === "Optimism" && showCaptcha()}
+                        {network === "Optimism on Gnosis Chain" && showCaptcha()}
                         {network === "Gnosis Chain" && (
                             <>
                                 <Grid item xs={12}>
