@@ -13,7 +13,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Container } from "@mui/system";
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Fragment, useState } from "react";
 import { toast } from "react-toastify";
 import { useAnalyticsEventTracker } from "../../App";
 import { higherAmount, lowerAmount } from "../../constants";
@@ -23,6 +23,7 @@ import "./send-card.scss";
 export const SendCard = () => {
     const gnosisExplorer = process.env.REACT_APP_EXPLORER_URL as string;
     const chiadoExplorer = process.env.REACT_APP_CHIADO_EXPLORE_URL as string;
+    const optimismExplorer = process.env.REACT_APP_OPTIMISM_EXPLORE_URL as string;
 
     const [network, setNetwork] = useState<string>("Gnosis Chain");
     const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -34,10 +35,10 @@ export const SendCard = () => {
     const [randomAmount, setRandomAmount] = useState<number>(0);
     const [tweetText, setTweetText] = useState<string>("");
     const [explorerUrl, setExplorerUrl] = useState<string>(gnosisExplorer);
-    
+
     const eventTracker = useAnalyticsEventTracker("Send Card");
 
-    const networks = ["Gnosis Chain", "Chiado Testnet"];
+    const networks = ["Gnosis Chain", "Chiado Testnet", "Optimism"];
 
     const serverUrl = process.env.REACT_APP_BACKEND_URL as string;
     const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
@@ -49,9 +50,12 @@ export const SendCard = () => {
         if (value === "Gnosis Chain") {
             setCaptchaVerified(false);
             setExplorerUrl(gnosisExplorer);
-        } else {
+        } else if (value === "Chiado Testnet") {
             setCaptchaVerified(true);
             setExplorerUrl(chiadoExplorer);
+        } else if(value === "Optimism") {
+            setCaptchaVerified(false);
+            setExplorerUrl(optimismExplorer);
         }
     };
 
@@ -85,7 +89,7 @@ export const SendCard = () => {
         });
     };
 
-    const sendRequest = async () => {        
+    const sendRequest = async () => {
         let _amount = amount;
         if (network === "Gnosis Chain") {
             if (amount === higherAmount.toString() && tweetUrl.length <= 0) {
@@ -116,7 +120,7 @@ export const SendCard = () => {
                 network,
                 tweetUrl,
                 amount: _amount,
-            };            
+            };
 
             axios
                 .post(url, req)
@@ -127,7 +131,9 @@ export const SendCard = () => {
                         setWalletAddress("");
                         setTweetUrl("");
                         setAmount(lowerAmount.toString());
-                        setCaptchaVerified(network === 'Chiado Testnet' ? true : false);
+                        setCaptchaVerified(
+                            network === "Chiado Testnet" ? true : false
+                        );
                         toast(
                             "xDAI sent to your wallet address. Hash: " +
                                 response.data.data
@@ -140,8 +146,8 @@ export const SendCard = () => {
                     setShowLoading(false);
                     toast.error(error.response.data.data.error);
                 });
-                
-                eventTracker("Send Request", JSON.stringify(req));
+
+            eventTracker("Send Request", JSON.stringify(req));
         } catch (error) {
             setShowLoading(false);
             if (error instanceof Error) {
@@ -165,6 +171,30 @@ export const SendCard = () => {
             setTweetText(_tweetText);
             return _tweetText;
         }
+    };
+
+    const showCaptcha = () => {
+        return (
+            <Fragment>
+                <Grid item xs={12}>
+                    <Typography
+                        color="white"
+                        variant="body1"
+                        fontFamily="GT-Planar"
+                        fontSize="20px"
+                    >
+                        Verify
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <HCaptcha
+                        size={isTabletOrMobile ? "compact" : "normal"}
+                        sitekey={siteKey}
+                        onVerify={onVerifyCaptcha}
+                    />
+                </Grid>
+            </Fragment>
+        );
     };
 
     return (
@@ -233,6 +263,7 @@ export const SendCard = () => {
                                 }}
                             />
                         </Grid>
+                        {network === "Optimism" && showCaptcha()}
                         {network === "Gnosis Chain" && (
                             <>
                                 <Grid item xs={12}>
@@ -330,27 +361,7 @@ export const SendCard = () => {
                                         </Grid>
                                     </>
                                 )}
-                                <Grid item xs={12}>
-                                    <Typography
-                                        color="white"
-                                        variant="body1"
-                                        fontFamily="GT-Planar"
-                                        fontSize="20px"
-                                    >
-                                        Verify
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <HCaptcha
-                                        size={
-                                            isTabletOrMobile
-                                                ? "compact"
-                                                : "normal"
-                                        }
-                                        sitekey={siteKey}
-                                        onVerify={onVerifyCaptcha}
-                                    />
-                                </Grid>
+                                {showCaptcha()}
                             </>
                         )}
                         {hash !== undefined && hash.length > 0 && (
