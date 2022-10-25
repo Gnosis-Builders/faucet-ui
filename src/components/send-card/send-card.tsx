@@ -58,7 +58,7 @@ export const SendCard = () => {
             setCaptchaVerified(false);
             setExplorerUrl(gnosisExplorer);
         } else if (value === CHIADO) {
-            setCaptchaVerified(true);
+            setCaptchaVerified(false);
             setExplorerUrl(chiadoExplorer);
         } else if (value === OPTIMISM_GNOSIS) {
             setCaptchaVerified(false);
