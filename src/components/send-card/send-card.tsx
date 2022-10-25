@@ -16,14 +16,23 @@ import axios from "axios";
 import { ChangeEvent, Fragment, useState } from "react";
 import { toast } from "react-toastify";
 import { useAnalyticsEventTracker } from "../../App";
-import { higherAmount, lowerAmount } from "../../constants";
+import {
+    CHIADO,
+    GNOSIS,
+    GNO_CHIADO,
+    higherAmount,
+    lowerAmount,
+    NETWORKS,
+    OPTIMISM_GNOSIS,
+} from "../../constants";
 import Loading from "../loading";
 import "./send-card.scss";
 
 export const SendCard = () => {
     const gnosisExplorer = process.env.REACT_APP_EXPLORER_URL as string;
     const chiadoExplorer = process.env.REACT_APP_CHIADO_EXPLORE_URL as string;
-    const optimismExplorer = process.env.REACT_APP_OPTIMISM_EXPLORE_URL as string;
+    const optimismExplorer = process.env
+        .REACT_APP_OPTIMISM_EXPLORE_URL as string;
 
     const [network, setNetwork] = useState<string>("Gnosis Chain");
     const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -38,8 +47,6 @@ export const SendCard = () => {
 
     const eventTracker = useAnalyticsEventTracker("Send Card");
 
-    const networks = ["Gnosis Chain", "Chiado Testnet", "Optimism on Gnosis Chain"];
-
     const serverUrl = process.env.REACT_APP_BACKEND_URL as string;
     const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
 
@@ -47,15 +54,18 @@ export const SendCard = () => {
         const value = event.target.value;
         setNetwork(value);
         eventTracker("Network Change", value);
-        if (value === "Gnosis Chain") {
+        if (value === GNOSIS) {
             setCaptchaVerified(false);
             setExplorerUrl(gnosisExplorer);
-        } else if (value === "Chiado Testnet") {
+        } else if (value === CHIADO) {
             setCaptchaVerified(true);
             setExplorerUrl(chiadoExplorer);
-        } else if(value === "Optimism on Gnosis Chain") {
+        } else if (value === OPTIMISM_GNOSIS) {
             setCaptchaVerified(false);
             setExplorerUrl(optimismExplorer);
+        } else if (value === GNO_CHIADO) {
+            setCaptchaVerified(false);
+            setExplorerUrl(chiadoExplorer);
         }
     };
 
@@ -222,9 +232,9 @@ export const SendCard = () => {
                                 value={network}
                                 onChange={handleNetworkChange}
                             >
-                                {networks.map((network) => (
-                                    <MenuItem key={network} value={network}>
-                                        {network}
+                                {NETWORKS.map(({ key, name }) => (
+                                    <MenuItem key={key} value={name}>
+                                        {name}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -263,8 +273,10 @@ export const SendCard = () => {
                                 }}
                             />
                         </Grid>
-                        {network === "Optimism on Gnosis Chain" && showCaptcha()}
-                        {network === "Gnosis Chain" && (
+                        {network === OPTIMISM_GNOSIS && showCaptcha()}
+                        {network === GNO_CHIADO && showCaptcha()}
+                        {network === CHIADO && showCaptcha()}
+                        {network === GNOSIS && (
                             <>
                                 <Grid item xs={12}>
                                     <Typography
@@ -390,7 +402,12 @@ export const SendCard = () => {
                                 variant="outlined"
                                 onClick={() => sendRequest()}
                             >
-                                Request xDAI
+                                {network === GNOSIS && "Request xDAI"}
+                                {network === CHIADO && "Request Chiado xDAI"}
+                                {network === GNO_CHIADO &&
+                                    "Request GNO on Chiado"}
+                                {network === OPTIMISM_GNOSIS &&
+                                    "Request Optimism on Gnosis"}
                             </Button>
                         </Grid>
                     </Grid>
