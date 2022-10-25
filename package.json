@@ -41,7 +41,7 @@
         "build": "yarn linter && react-scripts build",
         "surge": "yarn build && cd build && npx surge --domain gb-faucet-ui.surge.sh",
         "deploy": "yarn build && scp -r build/* gnosisfaucet.com:/var/www/html/",
-        "test": "react-scripts test",
+        "test": "react-scripts test --watchAll --testMatch **/src/**/*.test.tsx",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
@@ -64,5 +64,10 @@
     },
     "engines": {
         "yarn": ">= 1.22.19"
-    }
+    },
+    "jest": {
+        "testMatch": [
+          "<rootDir>/tests/**/*.test.{js,jsx,ts,tsx}"
+        ]
+      }
 }
