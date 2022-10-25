@@ -14,7 +14,7 @@ export const NavBar = () => {
     const isTabletOrMobile = useMediaQuery("(max-width:960px)");
 
     return (
-        <div className="navbar__root">
+        <div className="navbar__root" data-testid="navbar_root">
             <AppBar color="transparent" position="static">
                 <Toolbar>
                     <img

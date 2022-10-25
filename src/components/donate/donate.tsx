@@ -21,7 +21,7 @@ const Donate: React.FC = () => {
     };
     
     return (
-        <Container maxWidth="sm">
+        <Container maxWidth="sm" data-testid="donate_container">
             <div className="donate__container" id="donate-container">
                 <div className="donate__content">
                     <div className="donate__content__title">

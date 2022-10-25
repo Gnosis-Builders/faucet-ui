@@ -7,7 +7,7 @@ import "./bottom-bar.scss";
 
 export const BottomBar = () => {
     return (
-        <div className="bottombar__root">
+        <div className="bottombar__root" data-testid="bottombar_root">
             <AppBar color="transparent" position="static">
                 <Toolbar>
                     <Typography
