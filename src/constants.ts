@@ -14,10 +14,10 @@ export const NETWORKS = [
         key: "chiado",
         name: CHIADO,
     },
-    {
-        key: "gno_chiado",
-        name: GNO_CHIADO,
-    },
+    // {
+    //     key: "gno_chiado",
+    //     name: GNO_CHIADO,
+    // },
     {
         key: "optimism_gnosis",
         name: OPTIMISM_GNOSIS,
