@@ -178,7 +178,7 @@ export const SendCard = () => {
             setRandomAmount(_randomAmount);
             const amount = (+higherAmount + _randomAmount).toFixed(5);
             const _tweetText = tweetPlaceholder.replace("AMOUNT", amount);
-            setTweetText(_tweetText);
+            setTweetText(`${_tweetText}\n\nBy @gnosisbuilders\n📍 gnosis.builders`);
             return _tweetText;
         }
     };

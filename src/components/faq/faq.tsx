@@ -20,10 +20,10 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
 
     const handleChange =
         (panel: string) =>
-        (event: React.SyntheticEvent, newExpanded: boolean) => {
-            eventTracker(panel, newExpanded ? "Open" : "Close");
-            setExpanded(newExpanded ? panel : false);
-        };
+            (event: React.SyntheticEvent, newExpanded: boolean) => {
+                eventTracker(panel, newExpanded ? "Open" : "Close");
+                setExpanded(newExpanded ? panel : false);
+            };
 
     const getMoreFaqRef = useRef<HTMLDivElement | null>(null);
 
@@ -191,52 +191,17 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        If you already own DAI on Ethereum or another EVM
-                        compatible chain, you will be able to bridge your DAI to
-                        Gnosis Chain and convert it to xDAI. To do so, we
-                        recommend using either{" "}
+                        Visit{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https://bridge.connext.network/DAI-from-ethereum-to-gnosis"
-                        >
-                            Connext
-                        </a>{" "}
-                        bridge or{" "}
+                            href="https:/buyxdai.com/"
+                        >buyxdai.com</a>{" "}to purchase xDAI with fiat or to swap with crypto. If you already own DAI on another EVM compatible chain, visit{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https://app.hop.exchange/#/send?token=DAI&sourceNetwork=ethereum&destNetwork=gnosis"
-                        >
-                            Hop
-                        </a>{" "}
-                        bridge. Users without existing crypto can use a
-                        centralized exchange such as{" "}
-                        <a
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            href="https://ascendex.com/en/basic/cashtrade-spottrading/usdt/xdai"
-                        >
-                            Ascendex
-                        </a>
-                        , or a fiat on-ramp such as{" "}
-                        <a
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            href="https://ramp.network/"
-                        >
-                            Ramp
-                        </a>
-                        , to purchase their xDAI. Click{" "}
-                        <a
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            href="https://docs.gnosischain.com/"
-                        >
-                            here
-                        </a>{" "}
-                        for more information on how to perform any of the above
-                        listed activities.
+                            href="https:/buyxdai.com/"
+                        >buyxdai.com</a>{" "}to bridge and convert your DAI to xDAI on Gnosis Chain.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
