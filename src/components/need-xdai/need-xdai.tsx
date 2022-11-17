@@ -35,7 +35,7 @@ const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
                 of xDAI to your wallet in seconds.
             </p>
             <p className="nx__paragraph nx__paragraph__center">
-                If you need more than 0.01 xDAI, see&nbsp;
+                If you need more than 0.001 xDAI, see&nbsp;
                 <a href="#need-more" onClick={handleGetMoreXDAI}>
                     here
                 </a>
