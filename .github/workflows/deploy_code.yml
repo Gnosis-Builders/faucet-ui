@@ -1,9 +1,12 @@
+name: Deployer
 on:
-  push:
+  pull_request_target:
+    types:
+      - closed
     branches:
       - master
 jobs:
-  build:
+  if_merged:
     name: Build Code & Deploy to server
     runs-on: ubuntu-latest
     steps:
