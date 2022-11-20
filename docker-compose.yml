@@ -1,7 +1,0 @@
-version: "3"
-services:
-  faucet-gui:
-    image: silkroad.money/faucet-gui:v1.0.0
-    restart: unless-stopped
-    ports:
-      - 8080:80

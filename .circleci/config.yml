@@ -7,10 +7,7 @@ jobs:
       - image: arvindr226/alpine-ssh
     steps:
       - checkout
-      - run: ssh -oStrictHostKeyChecking=no gnosis@178.62.227.183 'mkdir -p src/faucet-gui-docker'  
-      - run: scp -oStrictHostKeyChecking=no docker-compose.yml gnosis@178.62.227.183:src/faucet-gui-docker/
-      - run: echo $DOCKERHUB_PASSWORD | ssh -oStrictHostKeyChecking=no gnosis@178.62.227.183 'docker login silkroad.money --username docker-registry-user --password-stdin'
-      - run: ssh -oStrictHostKeyChecking=no gnosis@178.62.227.183 'cd src/faucet-gui-docker; docker-compose down; docker-compose up -d'
+      - run: yarn deploy
                  
 # Orchestrate our job run sequence
 workflows:
