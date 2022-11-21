@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - run: cp .env.sample .env
-      - run: echo $HCAPTHA_KEY >> .env
+      - run: cat .env
       - run: yarn
       - run: yarn build
       - run: scp -oStrictHostKeyChecking=no -r build/* gnosis@178.62.227.183:/var/www/html/
