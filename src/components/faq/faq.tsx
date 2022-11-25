@@ -191,12 +191,12 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https:/buyxdai.com/"
+                            href="https://buyxdai.com/"
                         >buyxdai.com</a>{" "}to purchase xDAI with fiat or to swap with crypto. If you already own DAI on another EVM compatible chain, visit{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
-                            href="https:/buyxdai.com/"
+                            href="https://buyxdai.com/"
                         >buyxdai.com</a>{" "}to bridge and convert your DAI to xDAI on Gnosis Chain.
                     </Typography>
                 </AccordionDetails>
