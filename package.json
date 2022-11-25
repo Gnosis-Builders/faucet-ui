@@ -43,7 +43,7 @@
         "lint:fix": "npx eslint src/ --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
         "start": "npx react-scripts start",
         "build": "yarn linter && npx react-scripts build",
-        "surge": "yarn build && cd build && npx surge --domain gb-faucet-ui.surge.sh",
+        "surge": "yarn build && cd build && npx surge --domain gb-faucet-ui.surge.sh --project build",
         "deploy": "yarn build && scp -r build/* gnosisfaucet.com:/var/www/html/",
         "test": "npx react-scripts test --watchAll --testMatch **/src/**/*.test.tsx",
         "eject": "npx react-scripts eject"
