@@ -7,10 +7,10 @@ import { SendCard } from "./components/send-card/send-card";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
-import { BottomBar } from "./components/bottom-bar/bottom-bar";
 import { useState } from "react";
 import ReactGA from "react-ga";
 import Donate from "./components/donate/donate";
+import { Footer } from "./components/footer/footer";
 
 export const useAnalyticsEventTracker = (category: string) => {
     const eventTracker = (action: string, label: string) => {
@@ -47,9 +47,7 @@ function App() {
                 <FAQ setOpenGetMoreFaq={ setOpenGetMoreFaq }/>
                 <Donate />
             </Container>
-            <Container maxWidth="lg">
-            <BottomBar />
-            </Container>
+            <Footer />
         </Fragment>
     );
 }

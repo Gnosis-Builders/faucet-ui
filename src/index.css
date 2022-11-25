@@ -28,6 +28,16 @@ code {
       url("./fonts/GT-Planar/GT-Planar-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Avenir-Next-Regular";
+    src: url("./fonts/Avenir-Next/AvenirNext-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Avenir-Next";
+    src: url("./fonts/Avenir-Next/AvenirNext-Bold.otf") format("opentype");
+}
+
 a {
     color: brown;
     text-decoration: none;
