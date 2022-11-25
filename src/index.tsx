@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import "./fonts/GT-Planar/GT-Planar-Regular.woff";
 import "./fonts/GT-Planar/GT-Planar-Regular.woff2";
 import "./fonts/GT-Planar/GT-Planar-Regular.ttf";
+import "./fonts/Avenir-Next/AvenirNext-Regular.otf";
+import "./fonts/Avenir-Next/AvenirNext-Bold.otf";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
