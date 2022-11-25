@@ -41,7 +41,7 @@ const footerLinks = [
             },
             {
                 title: "Wallet Finder",
-                url: "https://walletfinder.com/"
+                url: "https://gnosiswallets.com/"
             },
         ]
     },
