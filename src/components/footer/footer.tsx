@@ -65,7 +65,7 @@ export const Footer = () => {
       <footer className="footer__root">
         <Container maxWidth="md" id="footer-container">
             <Box className="footer__box">
-                <div onClick={scrollToTop} className="footer__logo">
+                <div onClick={() => scrollToTop()} className="footer__logo">
                     <img 
                         src={logo}
                         alt="Gnosis Chain"
