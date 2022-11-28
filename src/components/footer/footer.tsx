@@ -57,11 +57,15 @@ const footerLinks = [
 ]
 
 export const Footer = () => {
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    };
+
     return (
       <footer className="footer__root">
         <Container maxWidth="md" id="footer-container">
             <Box className="footer__box">
-                <div className="footer__logo">
+                <div onClick={scrollToTop} className="footer__logo">
                     <img 
                         src={logo}
                         alt="Gnosis Chain"
