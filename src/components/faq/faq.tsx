@@ -155,7 +155,7 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain 0.0005 xDAI from the Gnosis Chain faucet must have solved the captcha verification. Users who wish to obtain 0.001 xDAI must complete the previous steps in addition to sending a verification Tweet.
+                        Users who wish to obtain 0.0005 xDAI from the Gnosis Chain faucet must have solved the captcha verification. Users who wish to obtain 0.005 xDAI must complete the previous steps in addition to sending a verification Tweet.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
