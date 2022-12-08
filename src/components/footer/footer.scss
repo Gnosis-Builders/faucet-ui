@@ -1,14 +1,14 @@
 .footer {
     &__root {
         margin-top: 4em;
-        padding: 5rem 0;
+        padding: 3em 0 2em;
         background-color: #1E1E1E;
     }
 
     &__box {
         display: flex;
         flex-direction: row;
-        gap: 20%;
+        gap: 19.5%;
         @media (max-width: 600px) {
             width: 100%;
             flex-direction: column;
