@@ -20,7 +20,7 @@ const footerLinks = [
             },
             {
                 title: "Gnosis Chain",
-                url: "https://www.gnosischain.com/evm"
+                url: "https://www.gnosis.io"
             },
         ]
     },
@@ -45,7 +45,7 @@ const footerLinks = [
             },
             {
                 title: "Gnosis Metrics",
-                url: "https://www.d14n.info/"
+                url: "https://www.gnosismetrics.com/"
             },
         ]
     },
