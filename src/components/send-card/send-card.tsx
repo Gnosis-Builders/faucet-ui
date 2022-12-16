@@ -154,6 +154,7 @@ export const SendCard = () => {
                 network,
                 tweetUrl,
                 amount: _amount,
+                smartContractABI,
             };
 
             axios
@@ -164,6 +165,7 @@ export const SendCard = () => {
                         setHash(response.data.data);
                         setWalletAddress("");
                         setTweetUrl("");
+                        setSmartContractABI("");
                         setAmount(lowerAmount.toString());
                         setCaptchaVerified(
                             network === "Chiado Testnet" ? true : false
