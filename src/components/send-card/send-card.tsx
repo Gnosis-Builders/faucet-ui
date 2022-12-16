@@ -420,7 +420,7 @@ export const SendCard = () => {
                                                 need a little extra xDAI to
                                                 deploy their contracts. Please
                                                 paste your contract ABI below to
-                                                get 0.01 xDAI.
+                                                get {smartContractAmount} xDAI.
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
