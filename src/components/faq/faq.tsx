@@ -9,6 +9,7 @@ import { Container } from "@mui/system";
 import "./faq.scss";
 import { useState, useEffect, useRef } from "react";
 import { useAnalyticsEventTracker } from "../../App";
+import { higherAmount, lowerAmount } from "../../constants";
 
 type FAQProps = {
     setOpenGetMoreFaq: (x: () => void) => void;
@@ -20,10 +21,10 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
 
     const handleChange =
         (panel: string) =>
-            (event: React.SyntheticEvent, newExpanded: boolean) => {
-                eventTracker(panel, newExpanded ? "Open" : "Close");
-                setExpanded(newExpanded ? panel : false);
-            };
+        (event: React.SyntheticEvent, newExpanded: boolean) => {
+            eventTracker(panel, newExpanded ? "Open" : "Close");
+            setExpanded(newExpanded ? panel : false);
+        };
 
     const getMoreFaqRef = useRef<HTMLDivElement | null>(null);
 
@@ -155,7 +156,14 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         fontSize="16px"
                         align="justify"
                     >
-                        Users who wish to obtain 0.0005 xDAI from the Gnosis Chain faucet must have solved the captcha verification. Users who wish to obtain 0.005 xDAI must complete the previous steps in addition to sending a verification Tweet.
+                        Users who wish to obtain {lowerAmount} xDAI from the
+                        Gnosis Chain faucet must have solved the captcha
+                        verification. Users who wish to obtain {higherAmount}{" "}
+                        xDAI must complete the previous steps in addition to
+                        sending a verification Tweet. Smart contract developers
+                        looking for more xDAI to deploy contracts can obtain
+                        0.01 xDAI from the faucet by verifying their contract
+                        ABI.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -192,12 +200,20 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                             target="_blank"
                             rel="noreferrer noopener"
                             href="https://buyxdai.com/"
-                        >buyxdai.com</a>{" "}to purchase xDAI with fiat or to swap with crypto. If you already own DAI on another EVM compatible chain, visit{" "}
+                        >
+                            buyxdai.com
+                        </a>{" "}
+                        to purchase xDAI with fiat or to swap with crypto. If
+                        you already own DAI on another EVM compatible chain,
+                        visit{" "}
                         <a
                             target="_blank"
                             rel="noreferrer noopener"
                             href="https://buyxdai.com/"
-                        >buyxdai.com</a>{" "}to bridge and convert your DAI to xDAI on Gnosis Chain.
+                        >
+                            buyxdai.com
+                        </a>{" "}
+                        to bridge and convert your DAI to xDAI on Gnosis Chain.
                     </Typography>
                 </AccordionDetails>
             </Accordion>

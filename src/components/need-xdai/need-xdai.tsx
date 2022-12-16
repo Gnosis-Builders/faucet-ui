@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { useAnalyticsEventTracker } from "../../App";
+import { smartContractAmount } from "../../constants";
 import "./need-xdai.scss";
 
 type NeedxDAIProps = {
@@ -9,7 +10,7 @@ type NeedxDAIProps = {
 
 const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
     const eventTracker = useAnalyticsEventTracker("NeedxDAI");
-    
+
     const handleGetMoreXDAI = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         openGetMoreFaq();
@@ -35,7 +36,7 @@ const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
                 of xDAI to your wallet in seconds.
             </p>
             <p className="nx__paragraph nx__paragraph__center">
-                If you need more than 0.005 xDAI, see&nbsp;
+                If you need more than {smartContractAmount} xDAI, see&nbsp;
                 <a href="#need-more" onClick={handleGetMoreXDAI}>
                     here
                 </a>

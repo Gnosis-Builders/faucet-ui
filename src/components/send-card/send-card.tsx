@@ -1,8 +1,10 @@
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import {
+    Box,
     Button,
     Grid,
     MenuItem,
+    TextareaAutosize,
     TextField,
     Typography,
     useMediaQuery,
@@ -24,7 +26,9 @@ import {
     lowerAmount,
     NETWORKS,
     OPTIMISM_GNOSIS,
+    smartContractAmount,
 } from "../../constants";
+import { verifyABI } from "../../utils";
 import Loading from "../loading";
 import "./send-card.scss";
 
@@ -40,6 +44,7 @@ export const SendCard = () => {
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
     const [tweetUrl, setTweetUrl] = useState<string>("");
+    const [smartContractABI, setSmartContractABI] = useState<string>("");
     const [amount, setAmount] = useState<string>(lowerAmount.toString());
     const [randomAmount, setRandomAmount] = useState<number>(0);
     const [tweetText, setTweetText] = useState<string>("");
@@ -79,6 +84,12 @@ export const SendCard = () => {
         setTweetUrl(event.target.value);
     };
 
+    const handleSmartContractABIChange = (
+        event: ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        setSmartContractABI(event.target.value);
+    };
+
     const handleAmountChange = (
         event: React.MouseEvent<HTMLElement>,
         newAmount: string
@@ -100,7 +111,20 @@ export const SendCard = () => {
     };
 
     const sendRequest = async () => {
+        eventTracker("Send Request", smartContractABI);
         let _amount = amount;
+
+        if (_amount === smartContractAmount.toString()) {
+            try {
+                verifyABI(smartContractABI);
+            } catch (error) {
+                if (error !== null || error !== undefined) {
+                    toast("Unable to verify ABI: " + error);
+                    return;
+                }
+            }
+        }
+
         if (network === "Gnosis Chain") {
             if (amount === higherAmount.toString() && tweetUrl.length <= 0) {
                 toast.error("Please provide a tweet URL.");
@@ -130,6 +154,7 @@ export const SendCard = () => {
                 network,
                 tweetUrl,
                 amount: _amount,
+                smartContractABI,
             };
 
             axios
@@ -140,6 +165,7 @@ export const SendCard = () => {
                         setHash(response.data.data);
                         setWalletAddress("");
                         setTweetUrl("");
+                        setSmartContractABI("");
                         setAmount(lowerAmount.toString());
                         setCaptchaVerified(
                             network === "Chiado Testnet" ? true : false
@@ -178,7 +204,9 @@ export const SendCard = () => {
             setRandomAmount(_randomAmount);
             const amount = (+higherAmount + _randomAmount).toFixed(5);
             const _tweetText = tweetPlaceholder.replace("AMOUNT", amount);
-            setTweetText(`${_tweetText}\n\nBy @gnosisbuilders\n📍 gnosis.builders`);
+            setTweetText(
+                `${_tweetText}\n\nBy @gnosisbuilders\n📍 gnosis.builders`
+            );
             return _tweetText;
         }
     };
@@ -305,6 +333,11 @@ export const SendCard = () => {
                                         >
                                             {higherAmount} xDAI
                                         </ToggleButton>
+                                        <ToggleButton
+                                            value={smartContractAmount.toString()}
+                                        >
+                                            {smartContractAmount} xDAI
+                                        </ToggleButton>
                                     </ToggleButtonGroup>
                                 </Grid>
                                 {amount === higherAmount.toString() && (
@@ -370,6 +403,69 @@ export const SendCard = () => {
                                                     ),
                                                 }}
                                             />
+                                        </Grid>
+                                    </>
+                                )}
+                                {amount === smartContractAmount.toString() && (
+                                    <>
+                                        <Grid item xs={12}>
+                                            <Typography
+                                                color="yellow"
+                                                variant="caption"
+                                                fontFamily="GT-Planar-Regular"
+                                                fontSize="12px"
+                                            >
+                                                This tier is only available for
+                                                smart contract developers who
+                                                need a little extra xDAI to
+                                                deploy their contracts. Please
+                                                paste your contract ABI below to
+                                                get {smartContractAmount} xDAI.
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Typography
+                                                color="white"
+                                                variant="body1"
+                                                fontFamily="GT-Planar"
+                                                fontSize="20px"
+                                            >
+                                                Smart Contract ABI
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextareaAutosize
+                                                minRows={25}
+                                                maxRows={25}
+                                                onChange={
+                                                    handleSmartContractABIChange
+                                                }
+                                                value={smartContractABI}
+                                                className="send-card__textarea"
+                                                id="smart-contract-abi"
+                                                inputMode="text"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Box
+                                                display="flex"
+                                                justifyContent="flex-end"
+                                            >
+                                                <Button
+                                                    onClick={() =>
+                                                        paste(
+                                                            setSmartContractABI
+                                                        )
+                                                    }
+                                                    className="send-card__white-button"
+                                                    variant="outlined"
+                                                    sx={{
+                                                        fontWeight: "bold",
+                                                    }}
+                                                >
+                                                    Paste
+                                                </Button>
+                                            </Box>
                                         </Grid>
                                     </>
                                 )}

@@ -19,7 +19,7 @@ const Donate: React.FC = () => {
             toast("Copied to clipboard!");
         });
     };
-    
+
     return (
         <Container maxWidth="sm">
             <div className="donate__container" id="donate-container">

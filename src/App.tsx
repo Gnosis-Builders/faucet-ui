@@ -14,13 +14,15 @@ import { Footer } from "./components/footer/footer";
 
 export const useAnalyticsEventTracker = (category: string) => {
     const eventTracker = (action: string, label: string) => {
-        ReactGA.event({category, action, label});
-      }
-      return eventTracker;
-}
+        ReactGA.event({ category, action, label });
+    };
+    return eventTracker;
+};
 
 function App() {
-    const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(() => () => null);
+    const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(
+        () => () => null
+    );
 
     const trackingId = "UA-237444060-2";
 
@@ -29,7 +31,11 @@ function App() {
 
     return (
         <Fragment>
-            <Container maxWidth="xl" sx={{ marginBottom: "2em" }} data-testid='container'>
+            <Container
+                maxWidth="xl"
+                sx={{ marginBottom: "2em" }}
+                data-testid="container"
+            >
                 <ToastContainer
                     position="top-right"
                     autoClose={50000}
@@ -42,9 +48,9 @@ function App() {
                     pauseOnHover
                 />
                 <NavBar />
-                <NeedxDAI openGetMoreFaq={ openGetMoreFaq }/>
+                <NeedxDAI openGetMoreFaq={openGetMoreFaq} />
                 <SendCard />
-                <FAQ setOpenGetMoreFaq={ setOpenGetMoreFaq }/>
+                <FAQ setOpenGetMoreFaq={setOpenGetMoreFaq} />
                 <Donate />
             </Container>
             <Footer />
