@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { useAnalyticsEventTracker } from "../../App";
-import { higherAmount } from "../../constants";
+import { smartContractAmount } from "../../constants";
 import "./need-xdai.scss";
 
 type NeedxDAIProps = {
@@ -36,7 +36,7 @@ const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
                 of xDAI to your wallet in seconds.
             </p>
             <p className="nx__paragraph nx__paragraph__center">
-                If you need more than {higherAmount} xDAI, see&nbsp;
+                If you need more than {smartContractAmount} xDAI, see&nbsp;
                 <a href="#need-more" onClick={handleGetMoreXDAI}>
                     here
                 </a>

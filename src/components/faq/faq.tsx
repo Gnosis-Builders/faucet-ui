@@ -160,7 +160,10 @@ const FAQ = ({ setOpenGetMoreFaq }: FAQProps) => {
                         Gnosis Chain faucet must have solved the captcha
                         verification. Users who wish to obtain {higherAmount}{" "}
                         xDAI must complete the previous steps in addition to
-                        sending a verification Tweet.
+                        sending a verification Tweet. Smart contract developers
+                        looking for more xDAI to deploy contracts can obtain
+                        0.01 xDAI from the faucet by verifying their contract
+                        ABI.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
