@@ -415,12 +415,12 @@ export const SendCard = () => {
                                                 fontFamily="GT-Planar-Regular"
                                                 fontSize="12px"
                                             >
-                                                This mode is only available for
+                                                This tier is only available for
                                                 smart contract developers who
                                                 need a little extra xDAI to
-                                                deploy their contracts. You will
-                                                be required to provide your
-                                                smart contract ABI to continue
+                                                deploy their contracts. Please
+                                                paste your contract ABI below to
+                                                get 0.01 xDAI.
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
