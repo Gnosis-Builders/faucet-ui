@@ -22,6 +22,9 @@ export const isNullOrUndefined = (
 };
 
 const _verifyABIArray = (abi: Array<ABIElement>) => {
+    if (abi.length === 0) {
+        return;
+    }
     abi.forEach((element: ABIElement) => {
         if (
             isNullOrUndefined(element.name) ||
@@ -51,10 +54,10 @@ const _verifyABIArray = (abi: Array<ABIElement>) => {
         }
 
         if (element.inputs.length > 0) {
-            element.inputs.forEach((input: ABIElements) => {
+            element.inputs.forEach((input: ABIElements) => {                
                 if (
-                    isNullOrUndefined(input.name) ||
-                    isNullOrUndefined(input.type) ||
+                    isNullOrUndefined(input.name) &&
+                    isNullOrUndefined(input.type) &&
                     isNullOrUndefined(input.internalType)
                 ) {
                     throw new Error(
@@ -75,10 +78,11 @@ const _verifyABIArray = (abi: Array<ABIElement>) => {
         if (!isNullOrUndefined(element.outputs)) {
             const outputs = element.outputs as Array<ABIElements>;
             if (outputs.length > 0) {
+                LOG.log("element: ", element, element.outputs);
                 outputs.forEach((output: ABIElements) => {
                     if (
-                        isNullOrUndefined(output.name) ||
-                        isNullOrUndefined(output.type) ||
+                        isNullOrUndefined(output.name) &&
+                        isNullOrUndefined(output.type) &&
                         isNullOrUndefined(output.internalType)
                     ) {
                         throw new Error(
