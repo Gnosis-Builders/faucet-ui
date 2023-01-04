@@ -1,7 +1,6 @@
 import { Box, Container } from "@mui/system";
 import logo from "./logo.svg";
 import twitter from "./twitter.svg";
-import discord from "./discord.svg";
 import telegram from "./telegram.svg";
 import "./footer.scss";
 import { Grid, Typography } from "@mui/material";
@@ -46,6 +45,10 @@ const footerLinks = [
             {
                 title: "Gnosis Metrics",
                 url: "https://www.gnosismetrics.com/",
+            },
+            {
+                title: "Validate Gnosis",
+                url: "https://www.validategnosis.com/",
             },
         ],
     },
@@ -146,21 +149,7 @@ export const Footer = () => {
                                         <div>
                                             <a
                                                 className="footer__social-logo"
-                                                href="https://discord.gg/gnosischain"
-                                                target="_blank"
-                                            >
-                                                <img
-                                                    src={discord}
-                                                    alt="Gnosis Discord"
-                                                />
-                                            </a>
-                                        </div>
-                                    </Grid>
-                                    <Grid item>
-                                        <div>
-                                            <a
-                                                className="footer__social-logo"
-                                                href="https://t.me/gnosischain"
+                                                href="https://t.me/GnosisBuildersCommunity"
                                                 target="_blank"
                                             >
                                                 <img
