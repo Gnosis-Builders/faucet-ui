@@ -32,13 +32,17 @@ import { verifyABI } from "../../utils";
 import Loading from "../loading";
 import "./send-card.scss";
 
-export const SendCard = () => {
+type SetNetworkProps = {
+    network: string;
+    setNetwork: (value: string) => void;
+}
+
+export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
     const gnosisExplorer = process.env.REACT_APP_EXPLORER_URL as string;
     const chiadoExplorer = process.env.REACT_APP_CHIADO_EXPLORE_URL as string;
     const optimismExplorer = process.env
         .REACT_APP_OPTIMISM_EXPLORE_URL as string;
 
-    const [network, setNetwork] = useState<string>("Gnosis Chain");
     const [captchaVerified, setCaptchaVerified] = useState(false);
     const [hash, setHash] = useState<string>("");
     const [showLoading, setShowLoading] = useState(false);

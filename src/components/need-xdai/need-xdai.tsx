@@ -1,14 +1,15 @@
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { useAnalyticsEventTracker } from "../../App";
-import { smartContractAmount } from "../../constants";
+import { smartContractAmount, CHIADO } from "../../constants";
 import "./need-xdai.scss";
 
 type NeedxDAIProps = {
     openGetMoreFaq: () => void;
+    network: string;
 };
 
-const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
+const NeedxDAI = ({ openGetMoreFaq, network }: NeedxDAIProps) => {
     const eventTracker = useAnalyticsEventTracker("NeedxDAI");
 
     const handleGetMoreXDAI = (event: React.MouseEvent<HTMLElement>) => {
@@ -35,13 +36,15 @@ const NeedxDAI = ({ openGetMoreFaq }: NeedxDAIProps) => {
                 your address, complete verification, and receive a small amount
                 of xDAI to your wallet in seconds.
             </p>
-            <p className="nx__paragraph nx__paragraph__center">
-                If you need more than {smartContractAmount} xDAI, see&nbsp;
-                <a href="#need-more" onClick={handleGetMoreXDAI}>
-                    here
-                </a>
-                .
-            </p>
+            {network !== CHIADO && (
+                <p className="nx__paragraph nx__paragraph__center">
+                    If you need more than {smartContractAmount} xDAI, see&nbsp;
+                    <a href="#need-more" onClick={handleGetMoreXDAI}>
+                        here
+                    </a>
+                    .
+                </p>
+            )}
         </Container>
     );
 };
