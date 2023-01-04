@@ -23,6 +23,7 @@ function App() {
     const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(
         () => () => null
     );
+    const [network, setNetwork] = useState<string>("Gnosis Chain");
 
     const trackingId = "UA-237444060-2";
 
@@ -48,8 +49,14 @@ function App() {
                     pauseOnHover
                 />
                 <NavBar />
-                <NeedxDAI openGetMoreFaq={openGetMoreFaq} />
-                <SendCard />
+                <NeedxDAI 
+                    openGetMoreFaq={openGetMoreFaq}
+                    network={network} 
+                />
+                <SendCard
+                    network={network}
+                    setNetwork={setNetwork}
+                />
                 <FAQ setOpenGetMoreFaq={setOpenGetMoreFaq} />
                 <Donate />
             </Container>
