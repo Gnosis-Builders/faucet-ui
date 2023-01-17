@@ -10,7 +10,7 @@ import "./App.scss";
 import { useState } from "react";
 import ReactGA from "react-ga";
 import Donate from "./components/donate/donate";
-import { Banner } from "./components/banner/banner";
+// import { Banner } from "./components/banner/banner";
 import { Footer } from "./components/footer/footer";
 
 export const useAnalyticsEventTracker = (category: string) => {
@@ -33,7 +33,7 @@ function App() {
 
     return (
         <Fragment>
-            <Banner />
+            {/* <Banner /> */}
             <Container
                 maxWidth="xl"
                 sx={{ marginBottom: "2em" }}
