@@ -1,4 +1,3 @@
-import HCaptcha from "@hcaptcha/react-hcaptcha";
 import {
     Box,
     Button,
@@ -7,7 +6,6 @@ import {
     TextareaAutosize,
     TextField,
     Typography,
-    useMediaQuery,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -16,6 +14,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Container } from "@mui/system";
 import axios from "axios";
 import { ChangeEvent, Fragment, useState } from "react";
+import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 import { toast } from "react-toastify";
 import { useAnalyticsEventTracker } from "../../App";
 import {
@@ -44,6 +43,7 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
         .REACT_APP_OPTIMISM_EXPLORE_URL as string;
 
     const [captchaVerified, setCaptchaVerified] = useState(false);
+    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
     const [hash, setHash] = useState<string>("");
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
@@ -57,7 +57,8 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
     const eventTracker = useAnalyticsEventTracker("Send Card");
 
     const serverUrl = process.env.REACT_APP_BACKEND_URL as string;
-    const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
+    // const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY as string;
+    // const isTabletOrMobile = useMediaQuery("(max-width:960px)");
 
     const handleNetworkChange = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -174,9 +175,10 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
                         setCaptchaVerified(
                             network === "Chiado Testnet" ? true : false
                         );
+                        setRefreshReCaptcha(true);
                         toast(
                             "xDAI sent to your wallet address. Hash: " +
-                                response.data.data
+                            response.data.data
                         );
                     } else {
                         toast("Error sending xDAI, please try again");
@@ -194,9 +196,7 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
                 toast.error(error.message);
             }
         }
-    };
-
-    const isTabletOrMobile = useMediaQuery("(max-width:960px)");
+    };    
 
     const tweetPlaceholder = process.env.REACT_APP_TWEET_TEXT as string;
 
@@ -215,25 +215,30 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleVerify = (_token: string) => {
+        const LOG = console;
+        LOG.log("Verified: ", _token);
+        axios.post(`${serverUrl}/verify-captcha`, { token: _token }).then((res) => {
+            const resFormatted = res.data.data;
+            if (resFormatted.success === true && +resFormatted.score >= 0.9) {
+                setCaptchaVerified(true);
+            } else {
+                setCaptchaVerified(false);
+            }
+        });        
+    };
+
     const showCaptcha = () => {
         return (
             <Fragment>
                 <Grid item xs={12}>
-                    <Typography
-                        color="white"
-                        variant="body1"
-                        fontFamily="GT-Planar"
-                        fontSize="20px"
-                    >
-                        Verify
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <HCaptcha
+                    <GoogleReCaptcha onVerify={(token) => handleVerify(token)} refreshReCaptcha={refreshReCaptcha} />
+                    {/* <HCaptcha
                         size={isTabletOrMobile ? "compact" : "normal"}
                         sitekey={siteKey}
                         onVerify={onVerifyCaptcha}
-                    />
+                    /> */}
                 </Grid>
             </Fragment>
         );

@@ -12,6 +12,7 @@ import ReactGA from "react-ga";
 import Donate from "./components/donate/donate";
 // import { Banner } from "./components/banner/banner";
 import { Footer } from "./components/footer/footer";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export const useAnalyticsEventTracker = (category: string) => {
     const eventTracker = (action: string, label: string) => {
@@ -21,6 +22,8 @@ export const useAnalyticsEventTracker = (category: string) => {
 };
 
 function App() {
+    const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY as string;
+
     const [openGetMoreFaq, setOpenGetMoreFaq] = useState<() => void>(
         () => () => null
     );
@@ -34,35 +37,45 @@ function App() {
     return (
         <Fragment>
             {/* <Banner /> */}
-            <Container
-                maxWidth="xl"
-                sx={{ marginBottom: "2em" }}
-                data-testid="container"
+            <GoogleReCaptchaProvider
+                reCaptchaKey={siteKey}
+                scriptProps={{
+                    async: false, // optional, default to false,
+                    defer: false, // optional, default to false
+                    appendTo: 'head', // optional, default to "head", can be "head" or "body",
+                    nonce: undefined // optional, default undefined
+                }}
             >
-                <ToastContainer
-                    position="top-right"
-                    autoClose={50000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
-                <NavBar />
-                <NeedxDAI 
-                    openGetMoreFaq={openGetMoreFaq}
-                    network={network} 
-                />
-                <SendCard
-                    network={network}
-                    setNetwork={setNetwork}
-                />
-                <FAQ setOpenGetMoreFaq={setOpenGetMoreFaq} />
-                <Donate />
-            </Container>
-            <Footer />
+                <Container
+                    maxWidth="xl"
+                    sx={{ marginBottom: "2em" }}
+                    data-testid="container"
+                >
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={50000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                    <NavBar />
+                    <NeedxDAI
+                        openGetMoreFaq={openGetMoreFaq}
+                        network={network}
+                    />
+                    <SendCard
+                        network={network}
+                        setNetwork={setNetwork}
+                    />
+                    <FAQ setOpenGetMoreFaq={setOpenGetMoreFaq} />
+                    <Donate />
+                </Container>
+                <Footer />
+            </GoogleReCaptchaProvider>
         </Fragment>
     );
 }
