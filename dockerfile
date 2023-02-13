@@ -16,4 +16,4 @@ EXPOSE 443
 EXPOSE 80
 EXPOSE 8080
 
-CMD [ "node", "server.js" ]
+CMD [ "yarn", "start" ]
