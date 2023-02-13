@@ -12,7 +12,13 @@
               "awslogs-create-group": "true",
               "mode": "non-blocking",
               "max-buffer-size": "2m"
-            }
+            },
+            "secretOptions": [
+              {
+                "name": "REACT_APP_RECAPTCHA_SITE_KEY",
+                "valueFrom": "arn:aws:secretsmanager:us-east-1:207935996736:secret:REACT_APP_RECAPTCHA_SITE_KEY"
+              }
+            ]
           },
           "cpu": 0,
           "portMappings": [
