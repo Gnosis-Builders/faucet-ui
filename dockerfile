@@ -5,7 +5,6 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 COPY package*.json ./
-COPY .env.sample .env
 
 RUN yarn set version latest
 RUN yarn install
