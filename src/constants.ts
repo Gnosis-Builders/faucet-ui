@@ -1,7 +1,7 @@
 export const lowerAmount = 0.0025;
 export const higherAmount = 0.005;
 export const smartContractAmount = 0.01;
-export const ADDRESS = "0x729F19e4C405758C93F59E5f098190cB2382d883";
+export const ADDRESS = "0x53458f3926D831F7a2129C32b5e4304234e3455C";
 export const GNOSIS = "Gnosis Chain";
 export const CHIADO = "Chiado Testnet (xDAI)";
 export const OPTIMISM_GNOSIS = "Optimism on Gnosis Chain";
