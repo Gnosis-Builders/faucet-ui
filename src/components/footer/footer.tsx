@@ -50,6 +50,10 @@ const footerLinks = [
                 title: "Validate Gnosis",
                 url: "https://www.validategnosis.com/",
             },
+            {
+                title: "mGNO Validator Deposit",
+                url: "https://mgno.validategnosis.com/",
+            }
         ],
     },
     {
