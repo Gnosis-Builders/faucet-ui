@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/system";
-import logo from "./logo.svg";
+import logo from "./footerLogo.png";
 import twitter from "./twitter.svg";
 import telegram from "./telegram.svg";
 import "./footer.scss";
