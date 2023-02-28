@@ -9027,6 +9027,11 @@ unique-string@^2.0.0:
   dependencies:
     crypto-random-string "^2.0.0"
 
+universal-banner@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/universal-banner/-/universal-banner-0.9.0.tgz#9e71e84d3489cd5b6992f8623e5acd114021a057"
+  integrity sha512-30JlfhvR3fXi2q4qyV5Str8zePhjYcVsLs3VY7j8ASvR/zaei1C57shZuogC3KgWGzL/ZZdUILT17JLVs1QEtA==
+
 universalify@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.2.0.tgz#6451760566fa857534745ab1dde952d1b1761be0"
