@@ -50,6 +50,10 @@ const footerLinks = [
                 title: "Validate Gnosis",
                 url: "https://www.validategnosis.com/",
             },
+            {
+                title: "mGNO Validator Deposit",
+                url: "https://mgno.validategnosis.com/",
+            }
         ],
     },
     {
@@ -78,7 +82,7 @@ export const Footer = () => {
                     <div>
                         <Grid
                             container
-                            spacing={8}
+                            spacing={6}
                             flex="1"
                             justifyContent="center"
                         >
