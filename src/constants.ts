@@ -19,8 +19,8 @@ export const NETWORKS = [
     //     key: "gno_chiado",
     //     name: GNO_CHIADO,
     // },
-    {
-        key: "optimism_gnosis",
-        name: OPTIMISM_GNOSIS,
-    },
+    // {
+    //     key: "optimism_gnosis",
+    //     name: OPTIMISM_GNOSIS,
+    // },
 ];
