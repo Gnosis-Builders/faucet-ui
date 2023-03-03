@@ -1,5 +1,6 @@
 import { Container } from "@mui/system";
 import { Fragment } from "react";
+import Banner from "universal-banner";
 import FAQ from "./components/faq/faq";
 import { NavBar } from "./components/navbar/navbar";
 import NeedxDAI from "./components/need-xdai/need-xdai";
@@ -10,7 +11,6 @@ import "./App.scss";
 import { useState } from "react";
 import ReactGA from "react-ga";
 import Donate from "./components/donate/donate";
-// import { Banner } from "./components/banner/banner";
 import { Footer } from "./components/footer/footer";
 
 export const useAnalyticsEventTracker = (category: string) => {
@@ -33,7 +33,7 @@ function App() {
 
     return (
         <Fragment>
-            {/* <Banner /> */}
+            <Banner />
             <Container
                 maxWidth="xl"
                 sx={{ marginBottom: "2em" }}
