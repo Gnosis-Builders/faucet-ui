@@ -161,8 +161,14 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
                 smartContractABI,
             };
 
+            const headers = {
+                "api-key": process.env.REACT_APP_RECAPTCHA_SITE_KEY as string
+            };
+
             axios
-                .post(url, req)
+                .post(url, req, {
+                    headers,
+                })
                 .then((response) => {
                     setShowLoading(false);
                     if (response.data.status === "success") {
