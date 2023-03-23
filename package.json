@@ -1,6 +1,6 @@
 {
     "name": "faucet-gui",
-    "version": "1.0.8",
+    "version": "1.0.10",
     "private": true,
     "homepage": " https://gnosisfaucet.com",
     "dependencies": {

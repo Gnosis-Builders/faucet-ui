@@ -1,174 +1,206 @@
-import { Box, Container } from "@mui/system";
+import { Container } from "@mui/system";
 import logo from "./footerLogo.png";
 import twitter from "./twitter.svg";
 import telegram from "./telegram.svg";
 import "./footer.scss";
-import { Grid, Typography } from "@mui/material";
-
-const footerLinks = [
-    {
-        title: "Organization",
-        links: [
-            {
-                title: "Gnosis Builders",
-                url: "https://www.gnosis.builders/",
-            },
-            {
-                title: "Careers",
-                url: "https://www.gnosis.builders/careers",
-            },
-            {
-                title: "Gnosis Chain",
-                url: "https://www.gnosis.io",
-            },
-        ],
-    },
-    {
-        title: "Tools",
-        links: [
-            {
-                title: "xDAI Faucet",
-                url: "https://gnosisfaucet.com/",
-            },
-            {
-                title: "Buy xDAI",
-                url: "https://buyxdai.com/",
-            },
-            {
-                title: "Buy GNO",
-                url: "https://buyxdai.com/gno",
-            },
-            {
-                title: "Wallet Finder",
-                url: "https://gnosiswallets.com/",
-            },
-            {
-                title: "Gnosis Metrics",
-                url: "https://www.gnosismetrics.com/",
-            },
-            {
-                title: "Validate Gnosis",
-                url: "https://www.validategnosis.com/",
-            },
-            {
-                title: "mGNO Validator Deposit",
-                url: "https://mgno.validategnosis.com/",
-            }
-        ],
-    },
-    {
-        title: "Blog",
-        links: [
-            {
-                title: "Builders Blog",
-                url: "https://www.gnosis.builders/gnosis-builders-blog",
-            },
-        ],
-    },
-];
+import { Grid, Typography, useMediaQuery } from "@mui/material";
 
 export const Footer = () => {
+    const isTablet = useMediaQuery("(min-width:768px)");
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     };
 
     return (
-        <footer className="footer__root">
-            <Container maxWidth="md" id="footer-container">
-                <Box className="footer__box">
-                    <div onClick={() => scrollToTop()} className="footer__logo">
-                        <img src={logo} alt="Gnosis Chain" />
-                    </div>
-                    <div>
+        <Container className="footer" maxWidth={false}>
+            <div className="footer__container">
+                <Grid container spacing={0}>
+                    {isTablet ? (
+                        <Grid item xs={2.6} className="footer__image-container">
+                            <img src={logo} onClick={scrollToTop} className="footer__image" />
+                        </Grid>
+                    ) : (
+                        <Grid item xs={12} className="footer__image-container">
+                            <img src={logo} onClick={scrollToTop} className="footer__image" />
+                        </Grid>
+                    )}
+                    <Grid item xs={isTablet ? 2.25 : 6} className={!isTablet ? "center-align" : ""}>
+                        <Typography className="footer__content__title">
+                            ORGANIZATION
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosis.builders/contact-us"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Contact Us
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosis.builders/careers"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Careers
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosis.io"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Gnosis Chain
+                            </a>
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={isTablet ? 2.25 : 6} className={!isTablet ? "center-align" : ""}>
+                        <Typography className="footer__content__title">
+                            TOOLS
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://gnosisfaucet.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                xDAI Faucet
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://buyxdai.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Buy xDAI
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://buyxdai.com/gno"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Buy GNO
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosiswallets.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Wallet Finder
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosismetrics.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Gnosis Metrics
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.validategnosis.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Validate Gnosis
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://mgno.validategnosis.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                mGNO Deposit
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://d14n.info/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                d14n
+                            </a>
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={isTablet ? 2.25 : 6}
+                        className={!isTablet ? "top__margin center-align" : ""}
+                    >
+                        <Typography className="footer__content__title">
+                            BLOG
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosis.builders/gnosis-builders-blog"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Builders Blog
+                            </a>
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={isTablet ? 2.25 : 6}
+                        className={!isTablet ? "top__margin center-align" : ""}
+                    >
+                        <Typography className="footer__content__title">
+                            SOCIAL
+                        </Typography>
                         <Grid
                             container
-                            spacing={6}
-                            flex="1"
-                            justifyContent="center"
+                            spacing={1}
+                            className="footer__content__socials"
                         >
-                            {footerLinks.map((footer) => (
-                                <Grid item key={footer.title}>
-                                    <Typography
-                                        variant="h6"
-                                        fontFamily="Avenir-Next"
-                                        fontWeight="bold"
-                                        fontSize="14px"
-                                        color="white"
-                                        sx={{
-                                            textTransform: "uppercase",
-                                            marginBottom: "10px",
-                                        }}
-                                    >
-                                        {footer.title}
-                                    </Typography>
-                                    {footer.links.map((link) => (
-                                        <Typography
-                                            key={link.title}
-                                            variant="subtitle1"
-                                            fontSize="14px"
-                                            fontFamily="Avenir-Next-Regular"
-                                        >
-                                            <a
-                                                target="_blank"
-                                                rel="noreferrer noopener"
-                                                className="footer__no-decoration"
-                                                href={link.url}
-                                            >
-                                                {link.title}
-                                            </a>
-                                        </Typography>
-                                    ))}
-                                </Grid>
-                            ))}
-                            <Grid item>
-                                <Typography
-                                    variant="h6"
-                                    fontFamily="Avenir-Next"
-                                    fontWeight="bold"
-                                    fontSize="14px"
-                                    color="white"
-                                    sx={{
-                                        textTransform: "uppercase",
-                                        marginBottom: "15px",
-                                    }}
+                            <Grid item xs={4}>
+                                <a
+                                    href="https://twitter.com/gnosisbuilders"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="footer__no-decoration"
                                 >
-                                    Socials
-                                </Typography>
-                                <Grid container spacing={2}>
-                                    <Grid item>
-                                        <div>
-                                            <a
-                                                className="footer__social-logo"
-                                                href="https://twitter.com/gnosisbuilders"
-                                                target="_blank"
-                                            >
-                                                <img
-                                                    src={twitter}
-                                                    alt="Gnosis Twitter"
-                                                />
-                                            </a>
-                                        </div>
-                                    </Grid>
-                                    <Grid item>
-                                        <div>
-                                            <a
-                                                className="footer__social-logo"
-                                                href="https://t.me/GnosisBuildersCommunity"
-                                                target="_blank"
-                                            >
-                                                <img
-                                                    src={telegram}
-                                                    alt="Gnosis Telegram"
-                                                />
-                                            </a>
-                                        </div>
-                                    </Grid>
-                                </Grid>
+                                    <img src={twitter} />
+                                </a>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <a
+                                    href="https://t.me/GnosisBuildersCommunity"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="footer__no-decoration"
+                                >
+                                    <img src={telegram} />
+                                </a>
                             </Grid>
                         </Grid>
-                    </div>
-                </Box>
-            </Container>
-        </footer>
+                    </Grid>
+                </Grid>
+            </div>
+        </Container>
     );
-};
+}
