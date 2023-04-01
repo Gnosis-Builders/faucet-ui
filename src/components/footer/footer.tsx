@@ -144,6 +144,16 @@ export const Footer = () => {
                                 d14n
                             </a>
                         </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.daosongnosis.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                DAO Directory
+                            </a>
+                        </Typography>
                     </Grid>
                     <Grid
                         item
