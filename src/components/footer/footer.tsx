@@ -31,6 +31,16 @@ export const Footer = () => {
                         </Typography>
                         <Typography className="footer__content__text">
                             <a
+                                href="https://www.gnosis.io"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Gnosis Chain
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
                                 href="https://www.gnosis.builders/contact-us"
                                 target="_blank"
                                 rel="noreferrer noopener"
@@ -41,7 +51,7 @@ export const Footer = () => {
                         </Typography>
                         <Typography className="footer__content__text">
                             <a
-                                href="https://www.gnosis.builders/careers"
+                                href="https://jobs.ashbyhq.com/f.actor"
                                 target="_blank"
                                 rel="noreferrer noopener"
                                 className="footer__no-decoration"
@@ -51,12 +61,22 @@ export const Footer = () => {
                         </Typography>
                         <Typography className="footer__content__text">
                             <a
-                                href="https://www.gnosis.io"
+                                href="https://www.gnosis.builders/gnosis-builders-blog"
                                 target="_blank"
                                 rel="noreferrer noopener"
                                 className="footer__no-decoration"
                             >
-                                Gnosis Chain
+                                Builders Blog
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosis.builders/verify"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Verify
                             </a>
                         </Typography>
                     </Grid>
@@ -151,16 +171,26 @@ export const Footer = () => {
                         className={!isTablet ? "top__margin center-align" : ""}
                     >
                         <Typography className="footer__content__title">
-                            BLOG
+                            DIRECTORY
                         </Typography>
                         <Typography className="footer__content__text">
                             <a
-                                href="https://www.gnosis.builders/gnosis-builders-blog"
+                                href="https://www.daosongnosis.com/"
                                 target="_blank"
                                 rel="noreferrer noopener"
                                 className="footer__no-decoration"
                             >
-                                Builders Blog
+                                DAO
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosisdefi.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                DeFi
                             </a>
                         </Typography>
                     </Grid>
