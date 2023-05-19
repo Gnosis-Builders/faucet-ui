@@ -1,4 +1,4 @@
-FROM node:19.3-bullseye
+FROM node:current-bullseye
 ENV NODE_ENV production
 
 WORKDIR /usr/src/app
