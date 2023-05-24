@@ -116,16 +116,6 @@ export const Footer = () => {
                         </Typography>
                         <Typography className="footer__content__text">
                             <a
-                                href="https://www.gnosiswallets.com/"
-                                target="_blank"
-                                rel="noreferrer noopener"
-                                className="footer__no-decoration"
-                            >
-                                Wallet Finder
-                            </a>
-                        </Typography>
-                        <Typography className="footer__content__text">
-                            <a
                                 href="https://www.gnosismetrics.com/"
                                 target="_blank"
                                 rel="noreferrer noopener"
@@ -191,6 +181,26 @@ export const Footer = () => {
                                 className="footer__no-decoration"
                             >
                                 DeFi
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.nftsongnosis.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                NFT/Gaming
+                            </a>
+                        </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.gnosiswallets.com/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Wallet Finder
                             </a>
                         </Typography>
                     </Grid>
