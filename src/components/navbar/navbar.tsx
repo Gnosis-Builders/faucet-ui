@@ -31,7 +31,7 @@ export const NavBar = () => {
                     ></Typography>
                     <a
                         className="navbar__link"
-                        href="https://discord.gg/VA2reyVXUn"
+                        href="https://bit.ly/faucetsupport"
                         target="_blank"
                         rel="noreferrer noopener"
                     >
