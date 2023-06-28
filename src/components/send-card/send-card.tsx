@@ -35,7 +35,7 @@ import "./send-card.scss";
 type SetNetworkProps = {
     network: string;
     setNetwork: (value: string) => void;
-}
+};
 
 export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
     const gnosisExplorer = process.env.REACT_APP_EXPLORER_URL as string;
@@ -44,6 +44,7 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
         .REACT_APP_OPTIMISM_EXPLORE_URL as string;
 
     const [captchaVerified, setCaptchaVerified] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState("");
     const [hash, setHash] = useState<string>("");
     const [showLoading, setShowLoading] = useState(false);
     const [walletAddress, setWalletAddress] = useState<string>("");
@@ -106,6 +107,7 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onVerifyCaptcha = (_token: string) => {
         setCaptchaVerified(true);
+        setCaptchaToken(_token);
     };
 
     const paste = (setFunction: (text: string) => void) => {
@@ -159,16 +161,11 @@ export const SendCard = ({ network, setNetwork }: SetNetworkProps) => {
                 tweetUrl,
                 amount: _amount,
                 smartContractABI,
-            };
-
-            const headers = {
-                "api-key": process.env.REACT_APP_RECAPTCHA_SITE_KEY as string
+                captchaToken,
             };
 
             axios
-                .post(url, req, {
-                    headers,
-                })
+                .post(url, req)
                 .then((response) => {
                     setShowLoading(false);
                     if (response.data.status === "success") {
