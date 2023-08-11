@@ -79,6 +79,16 @@ export const Footer = () => {
                                 Verify
                             </a>
                         </Typography>
+                        <Typography className="footer__content__text">
+                            <a
+                                href="https://www.web3evangelist.org/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="footer__no-decoration"
+                            >
+                                Web3 Evangelists
+                            </a>
+                        </Typography>
                     </Grid>
                     <Grid item xs={isTablet ? 2.25 : 6} className={!isTablet ? "center-align" : ""}>
                         <Typography className="footer__content__title">
@@ -136,12 +146,12 @@ export const Footer = () => {
                         </Typography>
                         <Typography className="footer__content__text">
                             <a
-                                href="https://mgno.validategnosis.com/"
+                                href="https://www.gnosispools.info/"
                                 target="_blank"
                                 rel="noreferrer noopener"
                                 className="footer__no-decoration"
                             >
-                                mGNO Deposit
+                                GnosisPools.info
                             </a>
                         </Typography>
                         <Typography className="footer__content__text">
